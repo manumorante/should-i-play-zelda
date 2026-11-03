@@ -172,6 +172,10 @@
   .progress{flex-shrink:0;height:10px;margin:18px -20px 0;background:rgba(0,0,0,.45);box-shadow:inset 0 1px 0 rgba(214,172,72,.4)}
   .progress span{display:block;height:100%;background:var(--gold);background-size:200% 100%;animation:shine 3s linear infinite;
                  border-radius:0 999px 999px 0;transition:width .45s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 12px rgba(255,220,120,.6)}
+  .foot a.me{font-family:Cinzel,serif;font-weight:800;font-style:normal;font-size:17px;letter-spacing:.03em;text-decoration:none;
+       background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;
+       border-bottom:1px solid rgba(214,172,72,.45);padding-bottom:1px}
+  .foot .by{font-style:normal}
   .foot{font-size:15px;color:var(--muted);text-align:center;margin-top:12px;font-style:italic}
 
   /* ---------- transiciones ---------- */
@@ -223,7 +227,7 @@ const F={
 };
 const TXT={
  es:{
-  title:'¿Deberías jugar a Zelda?', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino →', meta:'⏱ 30 segundos · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
+  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino →', meta:'⏱ 30 segundos · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
   q:'Pregunta', back:'← Atrás', again:'↺ Otra vez', yes:'Sí', no:'No',
   time:{q:'¿Tienes tiempo?', o:['Sí','No','No para Zelda']},
   job:{q:'¿Tienes trabajo?'}, quit:{q:'¿Puedes dejarlo?'}, hobbies:{q:'¿Tienes aficiones?'}, free:{q:'¿Tienes tiempo libre?'},
@@ -237,7 +241,7 @@ const TXT={
   path:'Tu camino hasta aquí', direct:'Directo, sin rodeos. Así se hace.'
  },
  en:{
-  title:'Should you play Zelda?', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide →', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
+  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide →', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
   q:'Question', back:'← Back', again:'↺ Again', yes:'Yes', no:'No',
   time:{q:'Do you have time?', o:['Yes','No','Not for Zelda']},
   job:{q:'Do you have a job?'}, quit:{q:'Can you quit it?'}, hobbies:{q:'Do you have hobbies?'}, free:{q:'Do you have free time?'},
@@ -265,7 +269,6 @@ function detectLang(){
 }
 function setLang(l, first){
   L=l; document.documentElement.lang=l; document.title=t().doc;
-  document.getElementById('foot').textContent=t().foot;
   if(!first){ try{localStorage.setItem('lang',l)}catch(_){} dir='none'; render(); }
 }
 
@@ -273,7 +276,14 @@ function pct(){ if(cur==='start') return 0; if(cur==='END') return 100; const i=
 const progress=()=>`<div class="progress"><span id="prog"></span></div>`;
 const backBtn=()=>hist.length?`<button class="btn back" onclick="back()">${t().back}</button>`:'';
 
+function foot(){
+  const f=document.getElementById('foot');
+  f.innerHTML = (cur==='start'||cur==='END')
+    ? `<span class="by">${t().by}</span> <a class="me" href="https://manumorante.com" target="_blank" rel="noopener">Manu Morante</a>`
+    : t().foot;
+}
 function render(){
+  foot();
   if(cur==='start') return start();
   const n=F[cur];
   if(cur==='END') return end();
