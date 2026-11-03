@@ -199,8 +199,8 @@
   .coll{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
   .coll-h{font-size:16px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
   .coll-h b{color:var(--gold-solid)}
-  .dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-  .ad{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 18px Nunito,sans-serif;
+  .dots{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+  .ad{width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 18px Nunito,sans-serif;
       color:rgba(214,172,72,.55);background:rgba(0,0,0,.25);font-size:16px;border:1.5px dashed rgba(214,172,72,.45);cursor:pointer;padding:0;transition:transform .2s}
   .ad.on{border:none;color:#2b1a02;background:radial-gradient(circle at 35% 30%,#fff4c4,#d9ae45 45%,#6b4a0e);box-shadow:0 0 0 2px #3a2705}
   .ad.cur{box-shadow:0 0 0 2px #3a2705,0 0 0 4px #fff1b8,0 0 16px rgba(255,220,120,.7)}
@@ -210,7 +210,7 @@
   .ad-info{font-size:17px;min-height:24px;text-align:center;color:var(--ink)}
   .ad-info b{font-family:Cinzel,serif;font-size:19px}
   .ad-info .lk{color:var(--muted);font-weight:800}
-  .coll.mini .ad{width:30px;height:30px;font-size:14px;cursor:default}
+  .coll.mini .ad{width:28px;height:28px;font-size:13px;cursor:default}
   .lang-sw{position:absolute;top:14px;right:58px;z-index:4;background:none;border:none;cursor:pointer;
       font:800 16px Nunito,sans-serif;color:var(--gold-solid);padding:6px 4px;border-bottom:1px solid rgba(214,172,72,.4)}
 
@@ -277,22 +277,47 @@ const Y='#3fd57a', N='#ff4d55', G='#ffd25a';
 const GEM={y:'var(--emerald)',n:'var(--ruby)',g:'var(--topaz)'};
 // Estructura del flujo (sin textos): [icono, color, gema, destino]
 const F={
-  time:   {o:[['✓',Y,'y','END'],['✕',N,'n','job'],['⚔',G,'g','blasphemy']]},
-  job:    {o:[['✓',Y,'y','quit'],['✕',N,'n','hobbies']]},
-  quit:   {o:[['✓',Y,'y','quitit'],['✕',N,'n','hobbies']]},
-  hobbies:{o:[['✓',Y,'y','newhobby'],['✕',N,'n','free']]},
-  free:   {o:[['✓',Y,'y','END'],['✕',N,'n','liar']]},
-  blasphemy:{msg:1, emo:'⚡', bad:1, to:'END'},
-  quitit:   {msg:1, emo:'📜', to:'END'},
-  newhobby: {msg:1, emo:'🗡️', to:'END'},
+  time:    {o:[['✓',Y,'y','hasgame'],['✕',N,'n','job'],['⚔',G,'g','blasphemy']]},
+  hasgame: {o:[['✓',Y,'y','beaten'],['✕',N,'n','money']]},
+  beaten:  {o:[['✓',Y,'y','secondrun'],['✕',N,'n','END','noexcuses']]},
+  money:   {o:[['✓',Y,'y','buyit'],['✕',N,'n','pots']]},
+  job:     {o:[['✓',Y,'y','quit'],['✕',N,'n','study']]},
+  quit:    {o:[['✓',Y,'y','quitit'],['✕',N,'n','family']]},
+  study:   {o:[['✓',Y,'y','studying'],['✕',N,'n','family']]},
+  family:  {o:[['♥',Y,'y','partner'],['✦',Y,'y','kids'],['⌂',Y,'y','hobbies']]},
+  partner: {o:[['✓',Y,'y','soulmate'],['✕',N,'n','romlie']]},
+  kids:    {o:[['✓',Y,'y','coop'],['✕',N,'n','culture']]},
+  hobbies: {o:[['✓',Y,'y','newhobby'],['✕',N,'n','free']]},
+  free:    {o:[['✓',Y,'y','END','honest'],['✕',N,'n','liar']]},
+  blasphemy:{msg:1, emo:'⚡', bad:1, to:'END', ach:'blasphemy'},
+  quitit:   {msg:1, emo:'📜', to:'END', ach:'quit'},
+  newhobby: {msg:1, emo:'🗡️', to:'END', ach:'hobby'},
+  secondrun:{msg:1, emo:'🔁', to:'END', ach:'secondrun'},
+  pots:     {msg:1, emo:'🏺', to:'END', ach:'pots'},
+  buyit:    {msg:1, emo:'🛒', to:'END', ach:'buyer'},
+  studying: {msg:1, emo:'🧩', to:'END', ach:'study'},
+  soulmate: {msg:1, emo:'💞', to:'END', ach:'soulmate'},
+  romlie:   {msg:1, emo:'🌿', to:'END', ach:'romlie'},
+  coop:     {msg:1, emo:'🎮', to:'END', ach:'coop'},
+  culture:  {msg:1, emo:'📚', to:'END', ach:'culture'},
   liar:     {msg:1, emo:'🤥', bad:1, to:'free'}
 };
 const TXT={
  es:{
-  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino', meta:'⏱ 30 segundos · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
+  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino', meta:'⏱ 1 minuto · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
   q:'Pregunta', back:'Atrás', again:'Otra vez', yes:'Sí', no:'No',
   time:{q:'¿Tienes tiempo?', o:['Sí','No','No para Zelda']},
   job:{q:'¿Tienes trabajo?'}, quit:{q:'¿Puedes dejarlo?'}, hobbies:{q:'¿Tienes aficiones?'}, free:{q:'¿Tienes tiempo libre?'},
+  hasgame:{q:'¿Tienes el juego?'}, beaten:{q:'¿Ya te lo has pasado?'}, money:{q:'¿Tienes dinero?'}, study:{q:'¿Estudias?'},
+  family:{q:'¿Con quién vives?', o:['Con mi pareja','Con mis hijos','Por mi cuenta']}, partner:{q:'¿Le gusta Zelda?'}, kids:{q:'¿Ya juegan a videojuegos?'},
+  secondrun:{big:'Otra vuelta', p:'Esta vez, sin mirar la guía.', btn:'Acepto'},
+  pots:{big:'¡Rompe vasijas!', p:'Siempre sale algo.', btn:'Voy a por ellas'},
+  buyit:{big:'Ve a comprarlo', p:'¿Y qué haces aquí todavía?', btn:'Ya voy'},
+  studying:{big:'Técnicamente es estudiar', p:'Zelda está lleno de puzles.', btn:'Me convence'},
+  soulmate:{big:'Turnaos el mando', p:'Tú primero, claro.', btn:'Obvio'},
+  romlie:{big:'Dile que es un documental', p:'De naturaleza. Con mucha hierba.', btn:'Buena idea'},
+  coop:{big:'Modo cooperativo', p:'Tú juegas, ellos miran.', btn:'Me parece justo'},
+  culture:{big:'Es cultura general', p:'Empieza su formación cuanto antes.', btn:'Por la educación'},
   blasphemy:{big:'¡BLASFEMIA!', p:'Para Zelda siempre hay tiempo.', btn:'Perdón, jugaré'},
   quitit:{big:'Déjalo', p:'Recoge tus cosas con dignidad. Hyrule te necesita más que tu jefe.', btn:'Hecho'},
   newhobby:{big:'Haz de Zelda tu nueva afición', p:'Las otras aficiones lo entenderán.', btn:'Me parece justo'},
@@ -306,14 +331,24 @@ const TXT={
   shareTitle:'Comparte tu camino', holdImg:'Mantén pulsada la imagen para guardarla o compartirla.', download:'Descargar imagen',
   copyLink:'Copiar enlace', copied:'¡Copiado!', close:'Cerrar',
   found:'Caminos descubiertos', tapHint:'Toca un círculo para ver una pista', newAch:'¡Camino nuevo descubierto!', allFound:'¡Los has descubierto todos!', locked:'Sin descubrir', other:'English',
-  hint:{noexcuses:'¿Y si dices que sí desde el principio?', blasphemy:'Atrévete con la respuesta prohibida.', quit:'Hay quien lo deja todo por Hyrule.', hobby:'Las aficiones también se pueden sustituir.', honest:'Confiesa tu tiempo libre… sin mentir.', white:'Una mentirijilla no hace daño.', pinocchio:'Miente. Y miente. Y vuelve a mentir.'},
-  ach:{noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
+  hint:{secondrun:'¿Y si ya te lo has pasado?', pots:'Sin dinero también se puede.', buyer:'Tiempo y dinero, pero sin el juego.', study:'Los estudios no son excusa.', soulmate:'Compartir es vivir.', romlie:'Hay parejas que no lo entienden.', coop:'Los peques también juegan.', culture:'Nunca es pronto para educar.', noexcuses:'Tiempo, el juego… y sin estrenar.', blasphemy:'Atrévete con la respuesta prohibida.', quit:'Hay quien lo deja todo por Hyrule.', hobby:'Las aficiones también se pueden sustituir.', honest:'Confiesa tu tiempo libre… sin mentir.', white:'Una mentirijilla no hace daño.', pinocchio:'Miente. Y miente. Y vuelve a mentir.'},
+  ach:{secondrun:'Segunda vuelta', pots:'Rompevasijas', buyer:'Cliente ejemplar', study:'Estudio aplicado', soulmate:'Alma gemela', romlie:'Mentira romántica', coop:'Educación clásica', culture:'Cultura general', noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
  },
  en:{
-  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
+  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide', meta:'⏱ 1 minute · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
   q:'Question', back:'Back', again:'Again', yes:'Yes', no:'No',
   time:{q:'Do you have time?', o:['Yes','No','Not for Zelda']},
   job:{q:'Do you have a job?'}, quit:{q:'Can you quit it?'}, hobbies:{q:'Do you have hobbies?'}, free:{q:'Do you have free time?'},
+  hasgame:{q:'Do you own the game?'}, beaten:{q:'Have you already beaten it?'}, money:{q:'Do you have money?'}, study:{q:'Are you a student?'},
+  family:{q:'Who do you live with?', o:['My partner','My kids','On my own']}, partner:{q:'Do they like Zelda?'}, kids:{q:'Do they play video games yet?'},
+  secondrun:{big:'One more run', p:'This time, no walkthrough.', btn:'Deal'},
+  pots:{big:'Smash pots!', p:'Something always drops.', btn:'On it'},
+  buyit:{big:'Go buy it', p:'What are you still doing here?', btn:'On my way'},
+  studying:{big:'Technically, it\'s studying', p:'Zelda is full of puzzles.', btn:'Convinced'},
+  soulmate:{big:'Take turns', p:'You go first, of course.', btn:'Obviously'},
+  romlie:{big:'Tell them it\'s a documentary', p:'A nature one. Lots of grass.', btn:'Good idea'},
+  coop:{big:'Co-op mode', p:'You play, they watch.', btn:'Fair enough'},
+  culture:{big:'It\'s general knowledge', p:'Start their education right away.', btn:'For education'},
   blasphemy:{big:'BLASPHEMY!', p:'There is always time for Zelda.', btn:'Sorry, I\'ll play'},
   quitit:{big:'Quit it', p:'Pack your things with dignity. Hyrule needs you more than your boss does.', btn:'Done'},
   newhobby:{big:'Make Zelda your new hobby', p:'Your other hobbies will understand.', btn:'Fair enough'},
@@ -327,11 +362,11 @@ const TXT={
   shareTitle:'Share your road', holdImg:'Press and hold the image to save or share it.', download:'Download image',
   copyLink:'Copy link', copied:'Copied!', close:'Close',
   found:'Roads discovered', tapHint:'Tap a circle for a hint', newAch:'New road discovered!', allFound:'You found them all!', locked:'Undiscovered', other:'Español',
-  hint:{noexcuses:'What if you say yes from the start?', blasphemy:'Dare to pick the forbidden answer.', quit:'Some people leave it all for Hyrule.', hobby:'Hobbies can be replaced too.', honest:'Admit your free time… without lying.', white:'A little white lie never hurt.', pinocchio:'Lie. And lie. And lie again.'},
-  ach:{noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
+  hint:{secondrun:'What if you already beat it?', pots:'You can do it without money.', buyer:'Time and money, but no game.', study:'Studying is no excuse.', soulmate:'Sharing is caring.', romlie:'Some partners just don\'t get it.', coop:'Kids play too.', culture:'It\'s never too early to educate.', noexcuses:'Time, the game… still unplayed.', blasphemy:'Dare to pick the forbidden answer.', quit:'Some people leave it all for Hyrule.', hobby:'Hobbies can be replaced too.', honest:'Admit your free time… without lying.', white:'A little white lie never hurt.', pinocchio:'Lie. And lie. And lie again.'},
+  ach:{secondrun:'Second Run', pots:'Pot Smasher', buyer:'Model Customer', study:'Applied Studies', soulmate:'Soulmate', romlie:'Romantic Lie', coop:'Classic Education', culture:'General Knowledge', noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
  }
 };
-const ORDER=['time','job','quit','hobbies','free'];
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
 let L='en', cur='start', hist=[], picks=[], dir='next', lies=0, prevPct=0, cfx=0;
 const card=document.getElementById('card');
 const t=()=>TXT[L];
@@ -348,7 +383,7 @@ function setLang(l, first){
   if(!first){ try{localStorage.setItem('lang',l)}catch(_){} dir='none'; render(); }
 }
 
-function pct(){ if(cur==='start') return 0; if(cur==='END') return 100; const i=ORDER.indexOf(cur); return Math.max(8,(i<0?ORDER.indexOf(hist[hist.length-1])+.5:i)/ORDER.length*100); }
+function pct(){ if(cur==='start') return 0; if(cur==='END') return 100; return Math.min(92, 8+picks.length*14); }
 const progress=()=>`<div class="progress"><span id="prog"></span></div>`;
 const backBtn=()=>hist.length?`<button class="btn back" onclick="back()">${t().back}</button>`:'';
 
@@ -374,7 +409,7 @@ function render(){
     if(n.bad && again){card.classList.remove('beat');void card.offsetWidth;card.classList.add('beat');setTimeout(()=>card.classList.remove('beat'),1400)}
     return after();
   }
-  const num=['I','II','III','IV','V'][ORDER.indexOf(cur)];
+  const num=ROMAN[picks.length]||picks.length+1;
   card.innerHTML=`<div class="body"><div class="qn">${t().q} ${num}</div><h1>${t()[cur].q}</h1><div class="opts" id="opts">`+
     n.o.map((o,i)=>`<button class="opt" style="animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span>${optLabel(cur,i)}</span></button>`).join('')+
     `</div></div><div class="actions">${backBtn()}</div>`+progress();
@@ -452,17 +487,16 @@ function story(){
   return out;
 }
 function achievement(ev){
-  const has=n=>ev.some(e=>e.n===n), liar=ev.find(e=>e.n==='liar');
+  const liar=ev.find(e=>e.n==='liar');
   if(liar) return liar.c>=3?'pinocchio':'white';
-  if(has('blasphemy')) return 'blasphemy';
-  if(has('quitit')) return 'quit';
-  if(has('newhobby')) return 'hobby';
-  if(ev.length===1) return 'noexcuses';
+  for(let k=ev.length-1;k>=0;k--){ const e=ev[k];
+    if(e.k==='m' && F[e.n].ach) return F[e.n].ach;
+    if(e.k==='q' && F[e.n].o[e.i][4]) return F[e.n].o[e.i][4]; }
   return 'honest';
 }
 const ICON=['✓','✕','⚔'];
-const ACH_ORDER=['noexcuses','blasphemy','quit','hobby','honest','white','pinocchio'];
-const ACH_IC={noexcuses:'🏃',blasphemy:'⚡',quit:'📜',hobby:'🗡️',honest:'🛋️',white:'🤞',pinocchio:'🤥'};
+const ACH_ORDER=['noexcuses','secondrun','buyer','pots','blasphemy','quit','study','soulmate','romlie','coop','culture','hobby','honest','white','pinocchio'];
+const ACH_IC={secondrun:'🔁',buyer:'🛒',pots:'🏺',study:'🧩',soulmate:'💞',romlie:'🌿',coop:'🎮',culture:'📚',noexcuses:'🏃',blasphemy:'⚡',quit:'📜',hobby:'🗡️',honest:'🛋️',white:'🤞',pinocchio:'🤥'};
 function getFound(){ try{ const f=JSON.parse(localStorage.getItem('found')||'[]'); return Array.isArray(f)?f.filter(k=>ACH_ORDER.includes(k)):[]; }catch(_){ return []; } }
 function addFound(k){ const f=getFound(); if(f.includes(k)) return false; f.push(k); try{ localStorage.setItem('found',JSON.stringify(f)); }catch(_){} return true; }
 function dots(found,cur,isNew,interactive){
@@ -475,7 +509,7 @@ function achInfo(k,el){
   document.getElementById('adinfo').innerHTML = on ? `<b class="gt">${t().ach[k]}</b>` : `<span class="lk">${t().locked}</span> · ${t().hint[k]}`;
 }
 function stepParts(e){
-  if(e.k==='q') return {ic:ICON[e.i], q:t()[e.n].q, a:optLabel(e.n,e.i)};
+  if(e.k==='q') return {ic:F[e.n].o[e.i][0], q:t()[e.n].q, a:optLabel(e.n,e.i)};
   const m=t()[e.n]; return {ic:F[e.n].emo, m:m.big+(e.c>1?` ×${e.c}`:''), bad:!!F[e.n].bad};
 }
 function end(){
