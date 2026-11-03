@@ -152,6 +152,40 @@
   .lang button:last-child{border-radius:0 999px 999px 0}
   .lang button.on{background:transparent;color:#2b1a02;text-shadow:0 1px 0 rgba(255,245,200,.7)}
 
+  /* ---------- final: logro y sendero ---------- */
+  .win .medal{width:88px;height:88px}
+  .win{gap:10px}
+  .win .big{font-size:31px}
+  .ach{display:flex;flex-direction:column;align-items:center;gap:2px}
+  .ach span{font-size:16px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .ach b{font-family:Cinzel,serif;font-size:27px;font-weight:800}
+  .trail-box{width:100%;border-radius:16px;padding:12px 14px 6px;text-align:left;
+       background:linear-gradient(180deg,#0f3322,#0a2617) padding-box, var(--gold) border-box;border:1.5px solid transparent}
+  .trail-h{font-family:Cinzel,serif;font-weight:700;color:var(--gold-solid);font-size:16px;letter-spacing:.06em;margin-bottom:8px}
+  .trail{list-style:none;position:relative;display:flex;flex-direction:column;gap:7px;padding-bottom:6px}
+  .trail::before{content:"";position:absolute;left:14px;top:14px;bottom:20px;width:2px;background:rgba(214,172,72,.6)}
+  .trail li{display:flex;align-items:center;gap:10px;font-size:17px;position:relative}
+  .trail .dot{width:28px;height:28px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#2b1a02;
+       background:radial-gradient(circle at 35% 30%,#fff4c4,#d9ae45 45%,#6b4a0e);box-shadow:0 0 0 2px #3a2705}
+  .trail b{color:#f1cf6b;font-family:Cinzel,serif}
+  .trail .tx{line-height:1.3}
+  .trail b.m{font-size:18px}
+  .trail b.bad{color:#ff7b7b}
+  .trail li.fin b{font-size:20px}
+  .sheet-bg{position:fixed;inset:0;z-index:20;background:rgba(2,10,6,.7);display:flex;align-items:flex-end;justify-content:center;animation:fadeBg .25s ease}
+  @keyframes fadeBg{from{opacity:0}}
+  .sheet{width:100%;max-width:520px;border-radius:26px 26px 0 0;padding:18px 18px 22px;display:flex;flex-direction:column;gap:12px;
+       background:linear-gradient(180deg,#123c28,#0b2a1b);border-top:2px solid var(--gold-solid);animation:up .4s cubic-bezier(.2,.8,.2,1);max-height:96dvh;overflow:auto}
+  @keyframes up{from{transform:translateY(100%)}}
+  .sheet h3{font-family:Cinzel,serif;font-size:22px;color:var(--gold-solid);text-align:center}
+  .sheet img{width:100%;max-height:52dvh;object-fit:contain;border-radius:14px;-webkit-touch-callout:default}
+  .sheet .note{text-align:center;color:var(--muted);font-size:17px}
+  .sheet .btn{display:block;text-align:center;text-decoration:none}
+  .btn.again{background:none;border:none;color:var(--muted);font-size:18px;padding:8px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:30;width:max-content;max-width:90%;background:#f3ecd2;color:#1b2d1f;
+       font-weight:800;font-size:17px;padding:14px 18px;border-radius:16px;text-align:center;animation:up .35s cubic-bezier(.2,.8,.2,1);transition:opacity .4s}
+  .toast.out{opacity:0}
+
   /* ---------- botones ---------- */
   .actions{display:flex;gap:10px;margin-top:14px;flex-shrink:0;position:relative;z-index:2}
   .btn{flex:1;border-radius:16px;padding:16px 10px;font:inherit;font-family:Cinzel,serif;font-weight:800;font-size:19px;cursor:pointer;
@@ -238,7 +272,12 @@ const TXT={
   lies:n=>`Mentiras hasta ahora: ${n}`,
   verdict:'Veredicto final', play:'Juega a<br>The Legend of Zelda', predicted:'Como estaba previsto desde la primera pregunta.',
   lied:n=>`Has mentido ${n} ${n===1?'vez':'veces'}. Hyrule te perdona.`,
-  path:'Tu camino hasta aquí', direct:'Directo, sin rodeos. Así se hace.'
+  path:'Tu camino hasta aquí', direct:'Directo, sin rodeos. Así se hace.',
+  road:'Mi camino hacia Zelda', achLabel:'Logro desbloqueado', share:'Compartir ↗', playShort:'¡A jugar a Zelda!', yours:'¿Y el tuyo?',
+  shareText:'Así fue mi camino hacia Zelda. ¿Y el tuyo?', copiedLink:'Enlace copiado: pégalo en el mensaje',
+  shareTitle:'Comparte tu camino', holdImg:'Mantén pulsada la imagen para guardarla o compartirla.', download:'Descargar imagen',
+  copyLink:'Copiar enlace', copied:'¡Copiado!', close:'Cerrar',
+  ach:{noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
  },
  en:{
   title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide →', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
@@ -252,7 +291,12 @@ const TXT={
   lies:n=>`Lies so far: ${n}`,
   verdict:'Final verdict', play:'Play<br>The Legend of Zelda', predicted:'Just as predicted from the very first question.',
   lied:n=>`You lied ${n} ${n===1?'time':'times'}. Hyrule forgives you.`,
-  path:'Your path here', direct:'Straight to it, no excuses. That\'s the way.'
+  path:'Your path here', direct:'Straight to it, no excuses. That\'s the way.',
+  road:'My road to Zelda', achLabel:'Achievement unlocked', share:'Share ↗', playShort:'Time to play Zelda!', yours:'What about yours?',
+  shareText:'This was my road to Zelda. What about yours?', copiedLink:'Link copied: paste it in your message',
+  shareTitle:'Share your road', holdImg:'Press and hold the image to save or share it.', download:'Download image',
+  copyLink:'Copy link', copied:'Copied!', close:'Close',
+  ach:{noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
  }
 };
 const ORDER=['time','job','quit','hobbies','free'];
@@ -360,21 +404,141 @@ function start(){
     </div></div>`+progress();
   after();
 }
+// ---------- historia del camino ----------
+function story(){
+  const ev=[]; let pi=0;
+  for(const n of hist){
+    if(n==='start') continue;
+    if(F[n].msg) ev.push({k:'m',n,c:1});
+    else { ev.push({k:'q',n,i:picks[pi]?picks[pi][1]:0,c:1}); pi++; }
+  }
+  // mentiras repetidas: un solo paso con ×n
+  const out=[];
+  for(const e of ev){
+    if(e.n==='liar'){ const first=out.find(x=>x.n==='liar'); if(first){ first.c++; out.pop(); continue; } }
+    out.push(e);
+  }
+  return out;
+}
+function achievement(ev){
+  const has=n=>ev.some(e=>e.n===n), liar=ev.find(e=>e.n==='liar');
+  if(liar) return liar.c>=3?'pinocchio':'white';
+  if(has('blasphemy')) return 'blasphemy';
+  if(has('quitit')) return 'quit';
+  if(has('newhobby')) return 'hobby';
+  if(ev.length===1) return 'noexcuses';
+  return 'honest';
+}
+const ICON=['✓','✕','⚔'];
+function stepParts(e){
+  if(e.k==='q') return {ic:ICON[e.i], q:t()[e.n].q, a:optLabel(e.n,e.i)};
+  const m=t()[e.n]; return {ic:F[e.n].emo, m:m.big+(e.c>1?` ×${e.c}`:''), bad:!!F[e.n].bad};
+}
 function end(){
-  const steps=picks.map(([nd,i])=>`<li>${t()[nd].q} <b>${optLabel(nd,i)}</b></li>`).join('') || `<li>${t().direct}</li>`;
+  const ev=story(), ach=t().ach[achievement(ev)];
+  const R=dir==='none'?'':'reveal';
+  const steps=ev.map((e,k)=>{const s=stepParts(e);
+    return `<li class="${R}" style="animation-delay:${1+k*.08}s"><span class="dot">${s.ic}</span>${s.m?`<b class="m ${s.bad?'bad':''}">${s.m}</b>`:`<span class="tx">${s.q} <b>${s.a}</b></span>`}</li>`}).join('');
   card.innerHTML=`<div class="body"><div class="msg win">
     <div class="medal-wrap"><div class="rays-clip"><div class="rays"></div></div>${medal(STAR)}</div>
-    <div class="qn reveal" style="animation-delay:.4s;margin:0">${t().verdict}</div>
-    <div class="big gt reveal" style="animation-delay:.55s">${t().play}</div>
-    <p class="reveal" style="animation-delay:.75s">${t().predicted}</p>
-    ${lies?`<p class="small reveal" style="animation-delay:.85s">${t().lied(lies)}</p>`:''}
-    <details class="path reveal" style="animation-delay:1s"><summary>${t().path}</summary><ol>${steps}</ol></details>
+    <div class="qn ${R}" style="animation-delay:.4s;margin:0">${t().verdict}</div>
+    <div class="big gt ${R}" style="animation-delay:.55s">${t().play}</div>
+    <div class="ach ${R}" style="animation-delay:.75s"><span>${t().achLabel}</span><b class="gt">${ach}</b></div>
+    <div class="trail-box ${R}" style="animation-delay:.9s"><div class="trail-h">${t().road}</div>
+      <ol class="trail">${steps}<li class="${R} fin" style="animation-delay:${1+ev.length*.08}s"><span class="dot">★</span><b>Zelda</b></li></ol></div>
     </div></div>
-    <div class="actions">${backBtn()}<button class="btn go pop" onclick="reset()">${t().again}</button></div>`+progress();
+    <div class="actions"><button class="btn back" onclick="reset()">${t().again}</button><button class="btn go pop" onclick="share()">${t().share}</button></div>`+progress();
   after();
   if(dir!=='none') setTimeout(confetti,650);
 }
 function reset(){ go('back',()=>{cur='time';hist=[];picks=[];lies=0}); }
+
+// ---------- imagen para compartir ----------
+const SITE='https://should-i-play-zelda.vercel.app';
+function goldGrad(x,a,b,c,d){const g=x.createLinearGradient(a,b,c,d);
+  [[0,'#6b4a0e'],[.18,'#d9ae45'],[.32,'#fff4c4'],[.45,'#e8c25a'],[.62,'#9c6e18'],[.8,'#f6dc85'],[1,'#7a5512']].forEach(([o,c])=>g.addColorStop(o,c));return g;}
+function fit(x,txt,font,size,max){let s=size;x.font=font.replace('$',s);while(x.measureText(txt).width>max&&s>18){s-=2;x.font=font.replace('$',s);}return s;}
+async function makeShare(){
+  try{await Promise.all(['800 60px Cinzel','700 30px Cinzel','700 30px Nunito','800 30px Nunito'].map(f=>document.fonts.load(f)))}catch(_){}
+  const ev=story(), ach=t().ach[achievement(ev)];
+  const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+  const CIN='$px Cinzel, Georgia, serif', NUN='$px Nunito, system-ui, sans-serif';
+  // fondo
+  let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#123c28');g.addColorStop(1,'#05160d');x.fillStyle=g;x.fillRect(0,0,W,H);
+  g=x.createRadialGradient(W/2,120,20,W/2,120,700);g.addColorStop(0,'rgba(214,172,72,.22)');g.addColorStop(1,'rgba(214,172,72,0)');x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.strokeStyle='rgba(255,255,255,.025)';x.lineWidth=3;for(let i=-H;i<W;i+=16){x.beginPath();x.moveTo(i,0);x.lineTo(i+H,H);x.stroke();}
+  // marco
+  x.lineWidth=10;x.strokeStyle=goldGrad(x,0,0,W,H);x.beginPath();x.roundRect(34,34,W-68,H-68,44);x.stroke();
+  x.lineWidth=2;x.globalAlpha=.6;x.beginPath();x.roundRect(56,56,W-112,H-112,30);x.stroke();x.globalAlpha=1;
+  const dia=(cx,cy,r)=>{x.fillStyle=goldGrad(x,cx-r,cy-r,cx+r,cy+r);x.beginPath();x.moveTo(cx,cy-r);x.lineTo(cx+r,cy);x.lineTo(cx,cy+r);x.lineTo(cx-r,cy);x.closePath();x.fill();};
+  [[56,56],[W-56,56],[56,H-56],[W-56,H-56]].forEach(([a,b])=>dia(a,b,14));
+  x.textAlign='center';x.textBaseline='alphabetic';
+  // cabecera
+  if('letterSpacing' in x) x.letterSpacing='6px';
+  x.fillStyle='#d6ac48';x.font=CIN.replace('$',34).replace('px','px').replace(/^/,'700 ');x.fillText(t().road.toUpperCase(),W/2,150);
+  if('letterSpacing' in x) x.letterSpacing='0px';
+  x.fillStyle='#b9c4a8';x.font='700 '+NUN.replace('$',30);x.fillText(t().achLabel,W/2,222);
+  let s=fit(x,ach,'800 '+CIN,76,880);x.fillStyle=goldGrad(x,W/2-440,230,W/2+440,310);
+  x.shadowColor='rgba(0,0,0,.6)';x.shadowBlur=12;x.shadowOffsetY=4;x.fillText(ach,W/2,305);x.shadowColor='transparent';
+  x.strokeStyle=goldGrad(x,200,0,880,0);x.lineWidth=2;x.beginPath();x.moveTo(200,352);x.lineTo(500,352);x.moveTo(580,352);x.lineTo(880,352);x.stroke();dia(W/2,352,12);
+  // sendero
+  const rows=ev.length+1, area0=440, area1=1060, step=Math.min(130,(area1-area0)/Math.max(1,rows-1)), top=area0+((area1-area0)-step*(rows-1))/2, X=180;
+  x.strokeStyle='rgba(214,172,72,.7)';x.lineWidth=5;x.beginPath();x.moveTo(X,top);x.lineTo(X,top+step*(rows-1));x.stroke();
+  x.textAlign='left';
+  ev.forEach((e,k)=>{const y=top+k*step, p=stepParts(e);
+    g=x.createRadialGradient(X-10,y-10,4,X,y,34);g.addColorStop(0,'#fff4c4');g.addColorStop(.45,'#d9ae45');g.addColorStop(1,'#6b4a0e');
+    x.fillStyle=g;x.beginPath();x.arc(X,y,32,0,7);x.fill();x.lineWidth=3;x.strokeStyle='#3a2705';x.stroke();
+    x.textAlign='center';x.textBaseline='middle';x.fillStyle='#2b1a02';x.font='800 '+NUN.replace('$',30);x.fillText(p.ic,X,y+1);
+    x.textAlign='left';
+    if(p.m){ x.font='800 '+CIN.replace('$',44);x.fillStyle=p.bad?'#ff6b6b':goldGrad(x,240,y-30,800,y+30);x.fillText(p.m,240,y+2); }
+    else{ const full=p.q+'  '+p.a; const sz=fit(x,full,'700 '+NUN,38,760);
+      x.font='700 '+NUN.replace('$',sz);x.fillStyle='#f3ecd2';x.fillText(p.q,240,y+2);const w=x.measureText(p.q+'  ').width;
+      x.font='800 '+CIN.replace('$',sz+4);x.fillStyle='#f1cf6b';x.fillText(p.a,240+w,y+2); }
+    x.textBaseline='alphabetic';
+  });
+  // final: medalla
+  const y=top+(rows-1)*step;
+  x.save();x.translate(X,y);x.fillStyle=goldGrad(x,-56,-56,56,56);
+  for(let k=0;k<16;k++){x.rotate(Math.PI/8);x.beginPath();x.moveTo(0,-58);x.lineTo(7,-38);x.lineTo(-7,-38);x.fill();}
+  x.restore();
+  g=x.createRadialGradient(X-12,y-12,4,X,y,44);g.addColorStop(0,'#fffbe6');g.addColorStop(.35,'#f1cf6b');g.addColorStop(1,'#7a5512');
+  x.fillStyle=g;x.beginPath();x.arc(X,y,42,0,7);x.fill();x.lineWidth=3;x.strokeStyle='#3a2705';x.stroke();
+  x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff6cf';x.strokeStyle='#8a5f12';x.lineWidth=2;x.font='800 '+NUN.replace('$',44);x.fillText('★',X,y+2);
+  x.textAlign='left';const pz=t().playShort;s=fit(x,pz,'800 '+CIN,52,760);x.fillStyle=goldGrad(x,240,y-30,900,y+30);x.fillText(pz,250,y+2);x.textBaseline='alphabetic';
+  // pie
+  x.textAlign='center';
+  x.fillStyle='#f3ecd2';x.font='800 '+CIN.replace('$',56);x.fillText(t().yours,W/2,1175);
+  x.fillStyle='#d6ac48';x.font='800 '+NUN.replace('$',36);x.fillText(SITE.replace('https://',''),W/2,1238);
+  x.fillStyle='#93a896';x.font='700 '+NUN.replace('$',24);x.fillText(t().by+' Manu Morante',W/2,1282);
+  return new Promise(r=>c.toBlob(r,'image/png'));
+}
+let shareBusy=false;
+async function share(){
+  if(shareBusy) return; shareBusy=true;
+  try{
+    const blob=await makeShare(); const file=new File([blob],'my-road-to-zelda.png',{type:'image/png'});
+    const text=`${t().shareText} ${SITE}/?lang=${L}`;
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      let cp; try{ cp=navigator.clipboard.writeText(text).then(()=>true,()=>false); }catch(_){ cp=Promise.resolve(false); }
+      try{ await navigator.share({files:[file]}); if(await cp) toast(t().copiedLink); return; }
+      catch(e){ if(e && e.name==='AbortError') return; }
+    }
+    openSheet(URL.createObjectURL(blob),text);
+  } finally { shareBusy=false; }
+}
+function toast(m){ const el=document.createElement('div');el.className='toast';el.textContent=m;document.body.appendChild(el);
+  setTimeout(()=>el.classList.add('out'),3800); setTimeout(()=>el.remove(),4300); }
+function openSheet(src,text){
+  const bg=document.createElement('div');bg.className='sheet-bg';
+  bg.innerHTML=`<div class="sheet"><h3>${t().shareTitle}</h3><img src="${src}" alt="${t().road}">
+    <p class="note">${t().holdImg}</p>
+    <a class="btn go" href="${src}" download="my-road-to-zelda.png">${t().download}</a>
+    <button class="btn back" style="flex:none" id="cp">${t().copyLink}</button>
+    <button class="btn again" id="cl">${t().close}</button></div>`;
+  document.body.appendChild(bg);
+  bg.addEventListener('click',e=>{if(e.target===bg||e.target.id==='cl')bg.remove()});
+  bg.querySelector('#cp').onclick=async e=>{try{await navigator.clipboard.writeText(text);e.target.textContent=t().copied}catch(_){}};
+}
 // Confeti de pan de oro: cada lámina cambia de brillo al girar
 function confetti(){
   const cv=document.getElementById('confetti'), x=cv.getContext('2d'), d=devicePixelRatio;
