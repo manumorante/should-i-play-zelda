@@ -147,7 +147,18 @@
   .path b{color:#f6d77a}
 
   /* ---------- inicio ---------- */
-  .start{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:6px 4px}
+  .start{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 4px}
+  .start-main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+  .start .coll.mini{margin-top:16px;padding-bottom:4px}
+  .tip{position:absolute;z-index:6;max-width:250px;padding:10px 16px;border-radius:14px;text-align:center;pointer-events:none;
+       background:linear-gradient(180deg,#fff4c4 0%,#f1cf6b 30%,#c8962e 75%,#e0b74e 100%);border:2px solid #5a3d08;color:#2b1a02;
+       box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 12px 24px -8px rgba(0,0,0,.7);
+       opacity:0;transform:translateY(6px) scale(.9);transition:opacity .2s, transform .25s cubic-bezier(.3,1.5,.5,1)}
+  .tip.show{opacity:1;transform:none}
+  .tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-8px;width:14px;height:14px;margin-left:-7px;transform:rotate(45deg);
+       background:#d9ae45;border-right:2px solid #5a3d08;border-bottom:2px solid #5a3d08}
+  .tip b{display:block;font-family:Cinzel,serif;font-weight:800;font-size:19px;line-height:1.2}
+  .tip span{display:block;font-weight:700;font-size:16px;margin-top:3px;line-height:1.25}
   .start .medal{width:118px;height:118px}
   .start .kick{font-family:Cinzel,serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-solid)}
   .start h1.hero{font-size:clamp(36px,10.5vw,50px);font-weight:800;line-height:1.08;margin:0;text-shadow:none}
@@ -210,7 +221,7 @@
   .ad-info{font-size:17px;min-height:24px;text-align:center;color:var(--ink)}
   .ad-info b{font-family:Cinzel,serif;font-size:19px}
   .ad-info .lk{color:var(--muted);font-weight:800}
-  .coll.mini .ad{width:28px;height:28px;font-size:13px;cursor:default}
+  .coll.mini .ad{width:30px;height:30px;font-size:14px}
   .lang-sw{position:absolute;top:14px;right:58px;z-index:4;background:none;border:none;cursor:pointer;
       font:800 16px Nunito,sans-serif;color:var(--gold-solid);padding:6px 4px;border-bottom:1px solid rgba(214,172,72,.4)}
 
@@ -458,18 +469,35 @@ const medal=(inner)=>`<svg class="medal" viewBox="0 0 120 120" aria-hidden="true
 const STAR='<path d="M60 38 L66 53 L82 54 L70 64 L74 80 L60 71 L46 80 L50 64 L38 54 L54 53 Z" fill="#fff6cf" stroke="#8a5f12" stroke-width="1.5" opacity=".95"/>';
 const QMARK='<text x="60" y="76" text-anchor="middle" font-family="Cinzel,serif" font-weight="800" font-size="46" fill="#fff6cf" stroke="#8a5f12" stroke-width="1.5">?</text>';
 function start(){
-  const R=dir==='none'?'':'reveal';
+  const R=dir==='none'?'':'reveal', f=getFound();
   card.innerHTML=`<button class="lang-sw" onclick="setLang('${L==='es'?'en':'es'}')">${t().other}</button><div class="body"><div class="start">
+    <div class="start-main">
     <div class="medal-wrap"><div class="rays-clip"><div class="rays"></div></div>${medal(QMARK)}</div>
     <div class="kick ${R}" style="animation-delay:.25s">${t().kick}</div>
     <h1 class="hero gt ${R}" style="animation-delay:.35s">${t().title}</h1>
     <p class="lead ${R}" style="animation-delay:.5s">${t().lead}</p>
     <button class="btn go ${R}" style="animation-delay:.65s" onclick="goTo('time')">${t().startBtn}</button>
-    <div class="meta ${R}" style="animation-delay:.75s">${t().meta}</div>
-    ${getFound().length?`<div class="coll mini ${R}" style="animation-delay:.85s"><div class="coll-h">${t().found} <b>${getFound().length}/${ACH_ORDER.length}</b></div><div class="dots">${dots(getFound(),null,false,false)}</div></div>`:''}
+    </div>
+    ${f.length?`<div class="coll mini ${R}" style="animation-delay:.85s"><div class="coll-h">${t().found} <b>${f.length}/${ACH_ORDER.length}</b></div><div class="dots">${dots(f,null,false,'tip')}</div></div>`:''}
     </div></div>`+progress();
   after();
 }
+// ---------- tooltip dorado de logros ----------
+let tipTimer;
+function showTip(k,el){
+  const c=card.getBoundingClientRect(), r=el.getBoundingClientRect(), on=getFound().includes(k);
+  let tp=document.getElementById('tip'); if(!tp){tp=document.createElement('div');tp.id='tip';tp.className='tip';card.appendChild(tp);}
+  tp.innerHTML = on ? `<b>${t().ach[k]}</b>` : `<b>${t().locked}</b><span>${t().hint[k]}</span>`;
+  tp.classList.remove('show'); tp.style.left='0px'; tp.style.top='0px';
+  const w=tp.offsetWidth, h=tp.offsetHeight, cx=r.left-c.left+r.width/2;
+  const left=Math.max(10,Math.min(c.width-w-10,cx-w/2));
+  tp.style.left=left+'px'; tp.style.top=(r.top-c.top-h-12)+'px'; tp.style.setProperty('--ax',(cx-left)+'px');
+  void tp.offsetWidth; tp.classList.add('show');
+  document.querySelectorAll('.coll .ad').forEach(b=>b.classList.toggle('pick',b===el));
+  clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3000);
+}
+function hideTip(){ const tp=document.getElementById('tip'); if(tp) tp.classList.remove('show'); document.querySelectorAll('.coll .ad.pick').forEach(b=>b.classList.remove('pick')); }
+document.addEventListener('pointerdown',e=>{ if(!e.target.closest('.ad')) hideTip(); });
 // ---------- historia del camino ----------
 function story(){
   const ev=[]; let pi=0;
@@ -501,7 +529,8 @@ function getFound(){ try{ const f=JSON.parse(localStorage.getItem('found')||'[]'
 function addFound(k){ const f=getFound(); if(f.includes(k)) return false; f.push(k); try{ localStorage.setItem('found',JSON.stringify(f)); }catch(_){} return true; }
 function dots(found,cur,isNew,interactive){
   return ACH_ORDER.map(k=>{const on=found.includes(k);
-    return `<${interactive?'button':'span'} class="ad ${on?'on':''} ${k===cur?'cur':''} ${k===cur&&isNew?'new':''}" ${interactive?`onclick="achInfo('${k}',this)" aria-label="${on?t().ach[k]:t().locked}"`:''}>${on?ACH_IC[k]:'?'}</${interactive?'button':'span'}>`}).join('');
+    const fn = interactive==='tip' ? 'showTip' : 'achInfo';
+    return `<${interactive?'button':'span'} class="ad ${on?'on':''} ${k===cur?'cur':''} ${k===cur&&isNew?'new':''}" ${interactive?`onclick="${fn}('${k}',this)" aria-label="${on?t().ach[k]:t().locked}"`:''}>${on?ACH_IC[k]:'?'}</${interactive?'button':'span'}>`}).join('');
 }
 function achInfo(k,el){
   const on=getFound().includes(k);
