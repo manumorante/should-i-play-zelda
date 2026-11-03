@@ -73,10 +73,10 @@
 
   /* ---------- opciones ---------- */
   .opts{display:flex;flex-direction:column;gap:14px;flex:1}
-  .opt{--px:50%;--py:50%;display:flex;align-items:center;gap:16px;width:100%;flex:1;min-height:66px;max-height:108px;
+  .opt{--px:50%;--py:50%;display:flex;align-items:center;justify-content:center;gap:16px;width:100%;flex:1;min-height:66px;max-height:108px;
        border:2px solid transparent;border-radius:18px;padding:14px 16px;
        background:linear-gradient(180deg,#123c28,#0b2a1b) padding-box, var(--gold) border-box;
-       font:inherit;font-family:Cinzel,serif;font-weight:700;font-size:23px;color:var(--ink);cursor:pointer;text-align:left;
+       font:inherit;font-family:Cinzel,serif;font-weight:700;font-size:23px;color:var(--ink);cursor:pointer;text-align:center;
        position:relative;overflow:hidden;transition:transform .2s, box-shadow .3s;
        box-shadow:0 8px 18px -10px #000, inset 0 1px 0 rgba(255,255,255,.06);
        animation:optIn .45s cubic-bezier(.2,.8,.2,1) backwards}
@@ -280,8 +280,8 @@ const F={
 };
 const TXT={
  es:{
-  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino →', meta:'⏱ 30 segundos · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
-  q:'Pregunta', back:'← Atrás', again:'↺ Otra vez', yes:'Sí', no:'No',
+  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino', meta:'⏱ 30 segundos · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
+  q:'Pregunta', back:'Atrás', again:'Otra vez', yes:'Sí', no:'No',
   time:{q:'¿Tienes tiempo?', o:['Sí','No','No para Zelda']},
   job:{q:'¿Tienes trabajo?'}, quit:{q:'¿Puedes dejarlo?'}, hobbies:{q:'¿Tienes aficiones?'}, free:{q:'¿Tienes tiempo libre?'},
   blasphemy:{big:'¡BLASFEMIA!', p:'Para Zelda siempre hay tiempo.', btn:'Perdón, jugaré'},
@@ -292,17 +292,17 @@ const TXT={
   verdict:'Veredicto final', play:'Juega a<br>The Legend of Zelda', predicted:'Como estaba previsto desde la primera pregunta.',
   lied:n=>`Has mentido ${n} ${n===1?'vez':'veces'}. Hyrule te perdona.`,
   path:'Tu camino hasta aquí', direct:'Directo, sin rodeos. Así se hace.',
-  road:'Mi camino hacia Zelda', achLabel:'Logro desbloqueado', share:'Compartir ↗', playShort:'¡A jugar a Zelda!', yours:'¿Y el tuyo?',
+  road:'Mi camino hacia Zelda', achLabel:'Logro desbloqueado', share:'Compartir', playShort:'¡A jugar a Zelda!', yours:'¿Y el tuyo?',
   shareText:'Así fue mi camino hacia Zelda. ¿Y el tuyo?', copiedLink:'Enlace copiado: pégalo en el mensaje',
   shareTitle:'Comparte tu camino', holdImg:'Mantén pulsada la imagen para guardarla o compartirla.', download:'Descargar imagen',
   copyLink:'Copiar enlace', copied:'¡Copiado!', close:'Cerrar',
-  found:'Caminos descubiertos', tapHint:'Toca un círculo para ver una pista', newAch:'¡Camino nuevo descubierto!', allFound:'¡Los has descubierto todos!', locked:'Sin descubrir', other:'🇬🇧 English',
+  found:'Caminos descubiertos', tapHint:'Toca un círculo para ver una pista', newAch:'¡Camino nuevo descubierto!', allFound:'¡Los has descubierto todos!', locked:'Sin descubrir', other:'English',
   hint:{noexcuses:'¿Y si dices que sí desde el principio?', blasphemy:'Atrévete con la respuesta prohibida.', quit:'Hay quien lo deja todo por Hyrule.', hobby:'Las aficiones también se pueden sustituir.', honest:'Confiesa tu tiempo libre… sin mentir.', white:'Una mentirijilla no hace daño.', pinocchio:'Miente. Y miente. Y vuelve a mentir.'},
   ach:{noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
  },
  en:{
-  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide →', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
-  q:'Question', back:'← Back', again:'↺ Again', yes:'Yes', no:'No',
+  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
+  q:'Question', back:'Back', again:'Again', yes:'Yes', no:'No',
   time:{q:'Do you have time?', o:['Yes','No','Not for Zelda']},
   job:{q:'Do you have a job?'}, quit:{q:'Can you quit it?'}, hobbies:{q:'Do you have hobbies?'}, free:{q:'Do you have free time?'},
   blasphemy:{big:'BLASPHEMY!', p:'There is always time for Zelda.', btn:'Sorry, I\'ll play'},
@@ -313,11 +313,11 @@ const TXT={
   verdict:'Final verdict', play:'Play<br>The Legend of Zelda', predicted:'Just as predicted from the very first question.',
   lied:n=>`You lied ${n} ${n===1?'time':'times'}. Hyrule forgives you.`,
   path:'Your path here', direct:'Straight to it, no excuses. That\'s the way.',
-  road:'My road to Zelda', achLabel:'Achievement unlocked', share:'Share ↗', playShort:'Time to play Zelda!', yours:'What about yours?',
+  road:'My road to Zelda', achLabel:'Achievement unlocked', share:'Share', playShort:'Time to play Zelda!', yours:'What about yours?',
   shareText:'This was my road to Zelda. What about yours?', copiedLink:'Link copied: paste it in your message',
   shareTitle:'Share your road', holdImg:'Press and hold the image to save or share it.', download:'Download image',
   copyLink:'Copy link', copied:'Copied!', close:'Close',
-  found:'Roads discovered', tapHint:'Tap a circle for a hint', newAch:'New road discovered!', allFound:'You found them all!', locked:'Undiscovered', other:'🇪🇸 Español',
+  found:'Roads discovered', tapHint:'Tap a circle for a hint', newAch:'New road discovered!', allFound:'You found them all!', locked:'Undiscovered', other:'Español',
   hint:{noexcuses:'What if you say yes from the start?', blasphemy:'Dare to pick the forbidden answer.', quit:'Some people leave it all for Hyrule.', hobby:'Hobbies can be replaced too.', honest:'Admit your free time… without lying.', white:'A little white lie never hurt.', pinocchio:'Lie. And lie. And lie again.'},
   ach:{noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
  }
@@ -361,13 +361,13 @@ function render(){
       <div class="emo reveal">${n.emo}</div>
       <div class="big ${n.bad?'bad'+(again?' shake':''):'gt reveal'}" style="animation-delay:.15s">${m.big}</div>
       <p class="reveal" style="animation-delay:.35s">${m.p}</p>${liesTxt}</div></div>
-      <div class="actions">${backBtn()}<button class="btn go ${n.bad?'red':''} pop" onclick="goTo('${n.to}')">${m.btn} →</button></div>`+progress();
+      <div class="actions">${backBtn()}<button class="btn go ${n.bad?'red':''} pop" onclick="goTo('${n.to}')">${m.btn}</button></div>`+progress();
     if(n.bad && again){card.classList.remove('beat');void card.offsetWidth;card.classList.add('beat');setTimeout(()=>card.classList.remove('beat'),1400)}
     return after();
   }
   const num=['I','II','III','IV','V'][ORDER.indexOf(cur)];
   card.innerHTML=`<div class="body"><div class="qn">${t().q} ${num}</div><h1>${t()[cur].q}</h1><div class="opts" id="opts">`+
-    n.o.map((o,i)=>`<button class="opt" style="animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span class="gem">${o[0]}</span><span>${optLabel(cur,i)}</span></button>`).join('')+
+    n.o.map((o,i)=>`<button class="opt" style="animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span>${optLabel(cur,i)}</span></button>`).join('')+
     `</div></div><div class="actions">${backBtn()}</div>`+progress();
   after();
 }
