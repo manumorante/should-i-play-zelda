@@ -81,20 +81,17 @@
        box-shadow:0 8px 18px -10px #000, inset 0 1px 0 rgba(255,255,255,.06);
        animation:optIn .45s cubic-bezier(.2,.8,.2,1) backwards}
   .opt::after{content:"";position:absolute;left:var(--px);top:var(--py);width:900px;height:900px;border-radius:50%;
-       background:radial-gradient(circle, color-mix(in srgb,var(--c) 38%,transparent), color-mix(in srgb,var(--c) 18%,transparent) 60%);
+       background:radial-gradient(circle, rgba(255,226,140,.20), rgba(255,226,140,.07) 60%);
        transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none;transition:transform .3s ease-in,opacity .3s}
   .opt::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,246,200,.35) 50%,transparent 65%);
        transform:translateX(-120%);pointer-events:none;z-index:2}
   .opt > *{position:relative;z-index:1}
-  .gem{width:44px;height:44px;flex:none;border-radius:50%;background:var(--gem);
-       box-shadow:0 0 0 3px #2a1c04, 0 0 0 5px var(--gold-solid), 0 4px 10px rgba(0,0,0,.6), inset 0 -4px 8px rgba(0,0,0,.35);
-       display:flex;align-items:center;justify-content:center;font-size:20px;font-family:Nunito;font-weight:800;color:rgba(255,255,255,.92);
-       text-shadow:0 1px 2px rgba(0,0,0,.6);transition:box-shadow .3s, transform .3s}
+  .gem{width:30px;flex:none;text-align:center;font-size:24px;font-family:Nunito;font-weight:800;color:var(--gold-solid);transition:color .3s, transform .3s}
   .opt:active{transform:scale(.97)}
-  .opt.sel{transform:translateY(-2px);box-shadow:0 14px 26px -12px #000, 0 0 26px -4px color-mix(in srgb,var(--c) 85%,transparent)}
+  .opt.sel{transform:translateY(-2px);background:linear-gradient(180deg,#2f5530,#173a22) padding-box, var(--gold) border-box;box-shadow:0 14px 26px -12px #000, 0 0 18px rgba(255,220,120,.5)}
   .opt.sel::after{transform:translate(-50%,-50%) scale(1);opacity:1;transition:transform .75s cubic-bezier(.4,0,.2,1),opacity .15s}
   .opt.sel::before{animation:sweep .7s ease-out .05s forwards}
-  .opt.sel .gem{transform:scale(1.12) rotate(-8deg);box-shadow:0 0 0 3px #2a1c04,0 0 0 5px #fff1b8,0 0 18px 4px color-mix(in srgb,var(--c) 80%,transparent)}
+  .opt.sel .gem{color:#fff1b8;transform:scale(1.15)}
   .opt.sel{animation:optpop .5s cubic-bezier(.3,1.6,.5,1)}
   @keyframes optpop{0%{transform:scale(.97)}45%{transform:scale(1.035) translateY(-3px)}100%{transform:translateY(-2px)}}
   @keyframes optIn{from{opacity:0;transform:translateY(12px)}}
@@ -139,6 +136,21 @@
   .path[open] summary::after{content:"–"}
   .path ol{padding:0 14px 12px 36px;display:flex;flex-direction:column;gap:6px}
   .path b{color:#f6d77a}
+
+  /* ---------- inicio ---------- */
+  .start{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:6px 4px}
+  .start .medal{width:118px;height:118px}
+  .start .kick{font-family:Cinzel,serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-solid)}
+  .start h1.hero{font-size:clamp(36px,10.5vw,50px);font-weight:800;line-height:1.08;margin:0;text-shadow:none}
+  .start .lead{font-size:20px;max-width:24ch}
+  .start .btn.go{flex:none;width:100%;font-size:21px;padding:18px 10px;margin-top:6px}
+  .start .meta{font-size:17px;color:var(--muted)}
+  .lang{display:flex;padding:2px;border-radius:999px;background:var(--gold);box-shadow:0 4px 12px -4px #000;margin-top:4px}
+  .lang button{font:800 17px Nunito,sans-serif;letter-spacing:.04em;border:none;cursor:pointer;padding:9px 18px;
+       background:var(--g1);color:var(--gold-solid);transition:background .25s,color .25s}
+  .lang button:first-child{border-radius:999px 0 0 999px;margin-right:1px}
+  .lang button:last-child{border-radius:0 999px 999px 0}
+  .lang button.on{background:transparent;color:#2b1a02;text-shadow:0 1px 0 rgba(255,245,200,.7)}
 
   /* ---------- botones ---------- */
   .actions{display:flex;gap:10px;margin-top:14px;flex-shrink:0;position:relative;z-index:2}
@@ -187,15 +199,6 @@
 </defs></svg>
 <canvas id="confetti"></canvas>
 <div class="app">
-  <div class="top"><div class="lang" role="group" aria-label="Language"><button data-l="es" onclick="setLang('es')">ES</button><button data-l="en" onclick="setLang('en')">EN</button></div></div>
-  <div class="brand">
-    <div class="t gt" id="ttl"></div>
-    <svg class="divider" viewBox="0 0 300 18" aria-hidden="true">
-      <path d="M0 9 H128 M172 9 H300" stroke="url(#au)" stroke-width="2"/>
-      <path d="M150 1 L159 9 L150 17 L141 9 Z" fill="url(#au)" stroke="#3a2705" stroke-width=".8"/>
-      <circle cx="132" cy="9" r="2.6" fill="url(#au)"/><circle cx="168" cy="9" r="2.6" fill="url(#au)"/>
-    </svg>
-  </div>
   <div class="frame"><div class="card" id="card"></div>
     <svg class="corner tl" viewBox="0 0 46 46" aria-hidden="true"><path d="M3 30 V10 Q3 3 10 3 H30" fill="none" stroke="url(#au)" stroke-width="2.5"/><path d="M9 22 Q9 9 22 9" fill="none" stroke="url(#au)" stroke-width="1.5"/><circle cx="10" cy="10" r="3.4" fill="url(#auR)" stroke="#3a2705" stroke-width=".6"/></svg>
     <svg class="corner tr" viewBox="0 0 46 46" aria-hidden="true"><path d="M3 30 V10 Q3 3 10 3 H30" fill="none" stroke="url(#au)" stroke-width="2.5"/><path d="M9 22 Q9 9 22 9" fill="none" stroke="url(#au)" stroke-width="1.5"/><circle cx="10" cy="10" r="3.4" fill="url(#auR)" stroke="#3a2705" stroke-width=".6"/></svg>
@@ -220,7 +223,7 @@ const F={
 };
 const TXT={
  es:{
-  title:'¿Deberías jugar a Zelda?', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
+  title:'¿Deberías jugar a Zelda?', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino →', meta:'⏱ 30 segundos · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
   q:'Pregunta', back:'← Atrás', again:'↺ Otra vez', yes:'Sí', no:'No',
   time:{q:'¿Tienes tiempo?', o:['Sí','No','No para Zelda']},
   job:{q:'¿Tienes trabajo?'}, quit:{q:'¿Puedes dejarlo?'}, hobbies:{q:'¿Tienes aficiones?'}, free:{q:'¿Tienes tiempo libre?'},
@@ -234,7 +237,7 @@ const TXT={
   path:'Tu camino hasta aquí', direct:'Directo, sin rodeos. Así se hace.'
  },
  en:{
-  title:'Should you play Zelda?', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
+  title:'Should you play Zelda?', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide →', meta:'⏱ 30 seconds · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
   q:'Question', back:'← Back', again:'↺ Again', yes:'Yes', no:'No',
   time:{q:'Do you have time?', o:['Yes','No','Not for Zelda']},
   job:{q:'Do you have a job?'}, quit:{q:'Can you quit it?'}, hobbies:{q:'Do you have hobbies?'}, free:{q:'Do you have free time?'},
@@ -249,7 +252,7 @@ const TXT={
  }
 };
 const ORDER=['time','job','quit','hobbies','free'];
-let L='en', cur='time', hist=[], picks=[], dir='next', lies=0, prevPct=0, cfx=0;
+let L='en', cur='start', hist=[], picks=[], dir='next', lies=0, prevPct=0, cfx=0;
 const card=document.getElementById('card');
 const t=()=>TXT[L];
 const optLabel=(node,i)=> (t()[node].o||[t().yes,t().no])[i];
@@ -262,17 +265,16 @@ function detectLang(){
 }
 function setLang(l, first){
   L=l; document.documentElement.lang=l; document.title=t().doc;
-  document.getElementById('ttl').textContent=t().title;
   document.getElementById('foot').textContent=t().foot;
-  document.querySelectorAll('.lang button').forEach(b=>{b.classList.toggle('on',b.dataset.l===l);b.setAttribute('aria-pressed',b.dataset.l===l)});
   if(!first){ try{localStorage.setItem('lang',l)}catch(_){} dir='none'; render(); }
 }
 
-function pct(){ if(cur==='END') return 100; const i=ORDER.indexOf(cur); return Math.max(8,(i<0?ORDER.indexOf(hist[hist.length-1])+.5:i)/ORDER.length*100); }
+function pct(){ if(cur==='start') return 0; if(cur==='END') return 100; const i=ORDER.indexOf(cur); return Math.max(8,(i<0?ORDER.indexOf(hist[hist.length-1])+.5:i)/ORDER.length*100); }
 const progress=()=>`<div class="progress"><span id="prog"></span></div>`;
 const backBtn=()=>hist.length?`<button class="btn back" onclick="back()">${t().back}</button>`:'';
 
 function render(){
+  if(cur==='start') return start();
   const n=F[cur];
   if(cur==='END') return end();
   if(n.msg){
@@ -288,7 +290,7 @@ function render(){
   }
   const num=['I','II','III','IV','V'][ORDER.indexOf(cur)];
   card.innerHTML=`<div class="body"><div class="qn">${t().q} ${num}</div><h1>${t()[cur].q}</h1><div class="opts" id="opts">`+
-    n.o.map((o,i)=>`<button class="opt" style="--c:${o[1]};animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span class="gem" style="--gem:${GEM[o[2]]}">${o[0]}</span><span>${optLabel(cur,i)}</span></button>`).join('')+
+    n.o.map((o,i)=>`<button class="opt" style="animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span class="gem">${o[0]}</span><span>${optLabel(cur,i)}</span></button>`).join('')+
     `</div></div><div class="actions">${backBtn()}</div>`+progress();
   after();
 }
@@ -322,20 +324,36 @@ function back(){
     while(F[cur] && F[cur].msg && hist.length){ if(cur==='liar') lies=Math.max(0,lies-1); cur=hist.pop(); picks.pop(); }
   });
 }
-const MEDAL=`<svg class="medal" viewBox="0 0 120 120" aria-hidden="true">
+const medal=(inner)=>`<svg class="medal" viewBox="0 0 120 120" aria-hidden="true">
   <g fill="url(#au)" stroke="#3a2705" stroke-width="1">
     ${Array.from({length:16},(_,k)=>`<polygon points="60,2 66,22 54,22" transform="rotate(${k*22.5} 60 60)"/>`).join('')}
   </g>
   <circle cx="60" cy="60" r="40" fill="url(#au)" stroke="#3a2705" stroke-width="1.5"/>
   <circle cx="60" cy="60" r="33" fill="none" stroke="#7a5512" stroke-width="1.5" opacity=".8"/>
   <circle cx="60" cy="60" r="31" fill="url(#auR)"/>
-  <path d="M60 38 L66 53 L82 54 L70 64 L74 80 L60 71 L46 80 L50 64 L38 54 L54 53 Z" fill="#fff6cf" stroke="#8a5f12" stroke-width="1.5" opacity=".95"/>
+  ${inner}
   <ellipse cx="46" cy="40" rx="14" ry="6" fill="#fff" opacity=".35" transform="rotate(-30 46 40)"/>
 </svg>`;
+const STAR='<path d="M60 38 L66 53 L82 54 L70 64 L74 80 L60 71 L46 80 L50 64 L38 54 L54 53 Z" fill="#fff6cf" stroke="#8a5f12" stroke-width="1.5" opacity=".95"/>';
+const QMARK='<text x="60" y="76" text-anchor="middle" font-family="Cinzel,serif" font-weight="800" font-size="46" fill="#fff6cf" stroke="#8a5f12" stroke-width="1.5">?</text>';
+function start(){
+  const R=dir==='none'?'':'reveal';
+  card.innerHTML=`<div class="body"><div class="start">
+    <div class="medal-wrap"><div class="rays-clip"><div class="rays"></div></div>${medal(QMARK)}</div>
+    <div class="kick ${R}" style="animation-delay:.25s">${t().kick}</div>
+    <h1 class="hero gt ${R}" style="animation-delay:.35s">${t().title}</h1>
+    <p class="lead ${R}" style="animation-delay:.5s">${t().lead}</p>
+    <button class="btn go ${R}" style="animation-delay:.65s" onclick="goTo('time')">${t().startBtn}</button>
+    <div class="meta ${R}" style="animation-delay:.75s">${t().meta}</div>
+    <div class="lang ${R}" style="animation-delay:.85s" role="group" aria-label="Language">
+      <button data-l="es" class="${L==='es'?'on':''}" onclick="setLang('es')">🇪🇸 Español</button><button data-l="en" class="${L==='en'?'on':''}" onclick="setLang('en')">English 🇬🇧</button></div>
+    </div></div>`+progress();
+  after();
+}
 function end(){
   const steps=picks.map(([nd,i])=>`<li>${t()[nd].q} <b>${optLabel(nd,i)}</b></li>`).join('') || `<li>${t().direct}</li>`;
   card.innerHTML=`<div class="body"><div class="msg win">
-    <div class="medal-wrap"><div class="rays-clip"><div class="rays"></div></div>${MEDAL}</div>
+    <div class="medal-wrap"><div class="rays-clip"><div class="rays"></div></div>${medal(STAR)}</div>
     <div class="qn reveal" style="animation-delay:.4s;margin:0">${t().verdict}</div>
     <div class="big gt reveal" style="animation-delay:.55s">${t().play}</div>
     <p class="reveal" style="animation-delay:.75s">${t().predicted}</p>
