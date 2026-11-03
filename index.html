@@ -302,7 +302,10 @@ const F={
   job:     {o:[['✓',Y,'y','quit'],['✕',N,'n','study']]},
   quit:    {o:[['✓',Y,'y','quitit'],['✕',N,'n','family']]},
   study:   {o:[['✓',Y,'y','studying'],['✕',N,'n','family']]},
-  family:  {o:[['♥',Y,'y','partner'],['✦',Y,'y','kids'],['⌂',Y,'y','hobbies']]},
+  family:  {o:[['♥',Y,'y','partner'],['✦',Y,'y','kids'],['☺',Y,'y','roomies'],['⌂',Y,'y','parents'],['🐾',Y,'y','pet'],['◆',Y,'y','hobbies']]},
+  roomies: {o:[['✓',Y,'y','schedule'],['✕',N,'n','hermit']]},
+  parents: {o:[['✓',Y,'y','allowed'],['✕',N,'n','secret']]},
+  pet:     {o:[['🐕',Y,'y','dog'],['🐈',Y,'y','cat']]},
   partner: {o:[['✓',Y,'y','soulmate'],['✕',N,'n','romlie']]},
   kids:    {o:[['✓',Y,'y','coop'],['✕',N,'n','culture']]},
   hobbies: {o:[['✓',Y,'y','newhobby'],['✕',N,'n','free']]},
@@ -318,6 +321,12 @@ const F={
   romlie:   {msg:1, emo:'🌿', to:'END', ach:'romlie'},
   coop:     {msg:1, emo:'🎮', to:'END', ach:'coop'},
   culture:  {msg:1, emo:'📚', to:'END', ach:'culture'},
+  schedule: {msg:1, emo:'📋', to:'END', ach:'roomtv'},
+  hermit:   {msg:1, emo:'🚪', to:'END', ach:'hermit'},
+  allowed:  {msg:1, emo:'👍', to:'END', ach:'allowed'},
+  secret:   {msg:1, emo:'🌙', to:'END', ach:'secret'},
+  dog:      {msg:1, emo:'🐕', to:'END', ach:'dog'},
+  cat:      {msg:1, emo:'🐈', to:'END', ach:'cat'},
   liar:     {msg:1, emo:'🤥', bad:1, to:'free'}
 };
 const TXT={
@@ -327,7 +336,14 @@ const TXT={
   time:{q:'¿Tienes tiempo?', o:['Sí','No','No para Zelda']},
   job:{q:'¿Tienes trabajo?'}, quit:{q:'¿Puedes dejarlo?'}, hobbies:{q:'¿Tienes aficiones?'}, free:{q:'¿Tienes tiempo libre?'},
   hasgame:{q:'¿Tienes el juego?'}, beaten:{q:'¿Ya te lo has pasado?'}, money:{q:'¿Tienes dinero?'}, study:{q:'¿Estudias?'},
-  family:{q:'¿Con quién vives?', o:['Con mi pareja','Con mis hijos','Por mi cuenta']}, partner:{q:'¿Le gusta Zelda?'}, kids:{q:'¿Ya juegan a videojuegos?'},
+  family:{q:'¿Con quién vives?', o:['Con mi pareja','Con mis hijos','Con amigos','Con mis padres','Con mi mascota','Vivo solo']},
+  roomies:{q:'¿Compartís la tele?'}, parents:{q:'¿Te dejan jugar?'}, pet:{q:'¿Perro o gato?', o:['Perro','Gato']},
+  schedule:{big:'Pon un horario en la nevera', p:'Tus turnos, de 8 horas.', btn:'Justo y necesario'},
+  hermit:{big:'Cierra la puerta', p:'Si preguntan, estás estudiando.', btn:'Entendido'},
+  allowed:{big:'Aprovecha', p:'Antes de que cambien de opinión.', btn:'Rápido'},
+  secret:{big:'Juega cuando se duerman', p:'Como en los viejos tiempos.', btn:'Clásico'},
+  dog:{big:'Primero paseo, luego Hyrule', p:'Él también necesita su siesta.', btn:'Vamos'},
+  cat:{big:'Se tumbará encima del mando', p:'Acéptalo y juega con él encima.', btn:'Lo acepto'}, partner:{q:'¿Le gusta Zelda?'}, kids:{q:'¿Ya juegan a videojuegos?'},
   secondrun:{big:'Otra vuelta', p:'Esta vez, sin mirar la guía.', btn:'Acepto'},
   pots:{big:'¡Rompe vasijas!', p:'Siempre sale algo.', btn:'Voy a por ellas'},
   buyit:{big:'Ve a comprarlo', p:'¿Y qué haces aquí todavía?', btn:'Ya voy'},
@@ -349,8 +365,8 @@ const TXT={
   shareTitle:'Comparte tu camino', holdImg:'Mantén pulsada la imagen para guardarla o compartirla.', download:'Descargar imagen',
   copyLink:'Copiar enlace', copied:'¡Copiado!', close:'Cerrar',
   found:'Caminos descubiertos', tapHint:'Toca un círculo para ver una pista', newAch:'¡Camino nuevo descubierto!', allFound:'¡Los has descubierto todos!', locked:'Sin descubrir', other:'English',
-  hint:{secondrun:'¿Y si ya te lo has pasado?', pots:'Sin dinero también se puede.', buyer:'Tiempo y dinero, pero sin el juego.', study:'Los estudios no son excusa.', soulmate:'Compartir es vivir.', romlie:'Hay parejas que no lo entienden.', coop:'Los peques también juegan.', culture:'Nunca es pronto para educar.', noexcuses:'Tiempo, el juego… y sin estrenar.', blasphemy:'Atrévete con la respuesta prohibida.', quit:'Hay quien lo deja todo por Hyrule.', hobby:'Las aficiones también se pueden sustituir.', honest:'Confiesa tu tiempo libre… sin mentir.', white:'Una mentirijilla no hace daño.', pinocchio:'Miente. Y miente. Y vuelve a mentir.'},
-  ach:{secondrun:'Segunda vuelta', pots:'Rompevasijas', buyer:'Cliente ejemplar', study:'Estudio aplicado', soulmate:'Alma gemela', romlie:'Mentira romántica', coop:'Educación clásica', culture:'Cultura general', noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
+  hint:{secondrun:'¿Y si ya te lo has pasado?', pots:'Sin dinero también se puede.', buyer:'Tiempo y dinero, pero sin el juego.', study:'Los estudios no son excusa.', soulmate:'Compartir es vivir.', romlie:'Hay parejas que no lo entienden.', coop:'Los peques también juegan.', culture:'Nunca es pronto para educar.', roomtv:'Compartir piso tiene sus normas.', hermit:'A veces hay que encerrarse.', allowed:'Hay padres enrollados.', secret:'De noche todo es posible.', dog:'Guau.', cat:'Miau.', noexcuses:'Tiempo, el juego… y sin estrenar.', blasphemy:'Atrévete con la respuesta prohibida.', quit:'Hay quien lo deja todo por Hyrule.', hobby:'Las aficiones también se pueden sustituir.', honest:'Confiesa tu tiempo libre… sin mentir.', white:'Una mentirijilla no hace daño.', pinocchio:'Miente. Y miente. Y vuelve a mentir.'},
+  ach:{secondrun:'Segunda vuelta', pots:'Rompevasijas', buyer:'Cliente ejemplar', study:'Estudio aplicado', soulmate:'Alma gemela', romlie:'Mentira romántica', coop:'Educación clásica', culture:'Cultura general', roomtv:'Convivencia ejemplar', hermit:'Modo ermitaño', allowed:'Permiso concedido', secret:'Partida clandestina', dog:'Compañero de aventuras', cat:'Siervo felino', noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
  },
  en:{
   title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide', meta:'⏱ 1 minute · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
@@ -358,7 +374,14 @@ const TXT={
   time:{q:'Do you have time?', o:['Yes','No','Not for Zelda']},
   job:{q:'Do you have a job?'}, quit:{q:'Can you quit it?'}, hobbies:{q:'Do you have hobbies?'}, free:{q:'Do you have free time?'},
   hasgame:{q:'Do you own the game?'}, beaten:{q:'Have you already beaten it?'}, money:{q:'Do you have money?'}, study:{q:'Are you a student?'},
-  family:{q:'Who do you live with?', o:['My partner','My kids','On my own']}, partner:{q:'Do they like Zelda?'}, kids:{q:'Do they play video games yet?'},
+  family:{q:'Who do you live with?', o:['My partner','My kids','Friends','My parents','My pet','I live alone']},
+  roomies:{q:'Do you share the TV?'}, parents:{q:'Do they let you play?'}, pet:{q:'Dog or cat?', o:['Dog','Cat']},
+  schedule:{big:'Put a schedule on the fridge', p:'Your shifts: 8 hours each.', btn:'Only fair'},
+  hermit:{big:'Close the door', p:'If they ask, you\'re studying.', btn:'Got it'},
+  allowed:{big:'Make the most of it', p:'Before they change their minds.', btn:'Quick'},
+  secret:{big:'Play once they\'re asleep', p:'Just like the old days.', btn:'Classic'},
+  dog:{big:'Walk first, then Hyrule', p:'They need a nap too.', btn:'Let\'s go'},
+  cat:{big:'It will lie on the controller', p:'Accept it and play around it.', btn:'I accept'}, partner:{q:'Do they like Zelda?'}, kids:{q:'Do they play video games yet?'},
   secondrun:{big:'One more run', p:'This time, no walkthrough.', btn:'Deal'},
   pots:{big:'Smash pots!', p:'Something always drops.', btn:'On it'},
   buyit:{big:'Go buy it', p:'What are you still doing here?', btn:'On my way'},
@@ -380,8 +403,8 @@ const TXT={
   shareTitle:'Share your road', holdImg:'Press and hold the image to save or share it.', download:'Download image',
   copyLink:'Copy link', copied:'Copied!', close:'Close',
   found:'Roads discovered', tapHint:'Tap a circle for a hint', newAch:'New road discovered!', allFound:'You found them all!', locked:'Undiscovered', other:'Español',
-  hint:{secondrun:'What if you already beat it?', pots:'You can do it without money.', buyer:'Time and money, but no game.', study:'Studying is no excuse.', soulmate:'Sharing is caring.', romlie:'Some partners just don\'t get it.', coop:'Kids play too.', culture:'It\'s never too early to educate.', noexcuses:'Time, the game… still unplayed.', blasphemy:'Dare to pick the forbidden answer.', quit:'Some people leave it all for Hyrule.', hobby:'Hobbies can be replaced too.', honest:'Admit your free time… without lying.', white:'A little white lie never hurt.', pinocchio:'Lie. And lie. And lie again.'},
-  ach:{secondrun:'Second Run', pots:'Pot Smasher', buyer:'Model Customer', study:'Applied Studies', soulmate:'Soulmate', romlie:'Romantic Lie', coop:'Classic Education', culture:'General Knowledge', noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
+  hint:{secondrun:'What if you already beat it?', pots:'You can do it without money.', buyer:'Time and money, but no game.', study:'Studying is no excuse.', soulmate:'Sharing is caring.', romlie:'Some partners just don\'t get it.', coop:'Kids play too.', culture:'It\'s never too early to educate.', roomtv:'Sharing a flat has its rules.', hermit:'Sometimes you need to lock yourself in.', allowed:'Some parents are cool.', secret:'Anything is possible at night.', dog:'Woof.', cat:'Meow.', noexcuses:'Time, the game… still unplayed.', blasphemy:'Dare to pick the forbidden answer.', quit:'Some people leave it all for Hyrule.', hobby:'Hobbies can be replaced too.', honest:'Admit your free time… without lying.', white:'A little white lie never hurt.', pinocchio:'Lie. And lie. And lie again.'},
+  ach:{secondrun:'Second Run', pots:'Pot Smasher', buyer:'Model Customer', study:'Applied Studies', soulmate:'Soulmate', romlie:'Romantic Lie', coop:'Classic Education', culture:'General Knowledge', roomtv:'Model Roommate', hermit:'Hermit Mode', allowed:'Permission Granted', secret:'Secret Session', dog:'Adventure Buddy', cat:'Feline Servant', noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
  }
 };
 const ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
@@ -531,8 +554,8 @@ function achievement(ev){
   return 'honest';
 }
 const ICON=['✓','✕','⚔'];
-const ACH_ORDER=['noexcuses','secondrun','buyer','pots','blasphemy','quit','study','soulmate','romlie','coop','culture','hobby','honest','white','pinocchio'];
-const ACH_IC={secondrun:'🔁',buyer:'🛒',pots:'🏺',study:'🧩',soulmate:'💞',romlie:'🌿',coop:'🎮',culture:'📚',noexcuses:'🏃',blasphemy:'⚡',quit:'📜',hobby:'🗡️',honest:'🛋️',white:'🤞',pinocchio:'🤥'};
+const ACH_ORDER=['noexcuses','secondrun','buyer','pots','blasphemy','quit','study','soulmate','romlie','coop','culture','roomtv','hermit','allowed','secret','dog','cat','hobby','honest','white','pinocchio'];
+const ACH_IC={roomtv:'📋',hermit:'🚪',allowed:'👍',secret:'🌙',dog:'🐕',cat:'🐈',secondrun:'🔁',buyer:'🛒',pots:'🏺',study:'🧩',soulmate:'💞',romlie:'🌿',coop:'🎮',culture:'📚',noexcuses:'🏃',blasphemy:'⚡',quit:'📜',hobby:'🗡️',honest:'🛋️',white:'🤞',pinocchio:'🤥'};
 function getFound(){ try{ const f=JSON.parse(localStorage.getItem('found')||'[]'); return Array.isArray(f)?f.filter(k=>ACH_ORDER.includes(k)):[]; }catch(_){ return []; } }
 function addFound(k){ const f=getFound(); if(f.includes(k)) return false; f.push(k); try{ localStorage.setItem('found',JSON.stringify(f)); }catch(_){} return true; }
 function dots(found,cur,isNew,interactive){
