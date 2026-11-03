@@ -150,14 +150,16 @@
   .start{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 4px}
   .start-main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
   .start .coll.mini{margin-top:16px;padding-bottom:4px}
-  .tip{position:absolute;z-index:6;max-width:250px;padding:10px 16px;border-radius:14px;text-align:center;pointer-events:none;
-       background:linear-gradient(180deg,#fff4c4 0%,#f1cf6b 30%,#c8962e 75%,#e0b74e 100%);border:2px solid #5a3d08;color:#2b1a02;
-       box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 12px 24px -8px rgba(0,0,0,.7);
-       opacity:0;transform:translateY(6px) scale(.9);transition:opacity .2s, transform .25s cubic-bezier(.3,1.5,.5,1)}
-  .tip.show{opacity:1;transform:none}
-  .tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-8px;width:14px;height:14px;margin-left:-7px;transform:rotate(45deg);
-       background:#d9ae45;border-right:2px solid #5a3d08;border-bottom:2px solid #5a3d08}
-  .tip b{display:block;font-family:Cinzel,serif;font-weight:800;font-size:19px;line-height:1.2}
+  .tip{position:absolute;z-index:6;max-width:250px;padding:10px 16px;border-radius:12px;text-align:center;pointer-events:none;
+       background:var(--gold);background-size:200% 200%;color:#2b1a02;border:1.5px solid #5a3d08;
+       box-shadow:inset 0 0 0 1px rgba(255,244,200,.35), inset 0 2px 7px rgba(70,40,0,.45);
+       opacity:0;transform-origin:var(--ax,50%) calc(100% + 10px);transform:scale(.2) translateY(16px)}
+  .tip.show{animation:tipIn .55s cubic-bezier(.3,1.5,.5,1) forwards, tipShine 3s linear .55s infinite}
+  @keyframes tipIn{0%{opacity:0;transform:scale(.2) translateY(16px)}45%{opacity:1;transform:scale(1.08) translateY(-6px)}70%{transform:scale(.97) translateY(1px)}100%{opacity:1;transform:none}}
+  @keyframes tipShine{from{background-position:0% 50%}to{background-position:200% 50%}}
+  .tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-8px;width:13px;height:13px;margin-left:-6.5px;transform:rotate(45deg);
+       background:linear-gradient(135deg,#e8c25a,#a8771d);border-right:1.5px solid #5a3d08;border-bottom:1.5px solid #5a3d08}
+  .tip b{display:block;font-family:Cinzel,serif;font-weight:800;font-size:19px;line-height:1.2;text-shadow:0 1px 0 rgba(255,245,200,.55)}
   .tip span{display:block;font-weight:700;font-size:16px;margin-top:3px;line-height:1.25}
   .start .medal{width:118px;height:118px}
   .start .kick{font-family:Cinzel,serif;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-solid)}
