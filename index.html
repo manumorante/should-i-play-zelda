@@ -29,6 +29,9 @@
     --gold: linear-gradient(135deg,
       #5c3f0c 0%, #a47a2c 12%, #e6cd8a 24%, #f7ecd0 30%, #cfa752 38%,
       #946a1e 50%, #c09640 62%, #efdcaa 72%, #b08532 82%, #6a4a12 100%);
+    --gold-loop: linear-gradient(135deg,
+      #5c3f0c 0%, #a47a2c 12%, #e6cd8a 24%, #f7ecd0 30%, #cfa752 38%,
+      #946a1e 50%, #c09640 62%, #efdcaa 72%, #b08532 82%, #5c3f0c 100%);
     --gold-v: linear-gradient(180deg, #f2e2b4 0%, #d8b464 22%, #ac8030 50%, #7c5614 72%, #c69c48 100%);
     --gold-solid:#c49a46;
     --ruby: radial-gradient(circle at 32% 28%, #ffd2d2 0 8%, #ff5a5a 22%, #b3121b 58%, #4d0408 100%);
@@ -46,10 +49,10 @@
   .app{width:100%;max-width:520px;height:100%;max-height:880px;display:flex;flex-direction:column}
 
   /* ---------- texto dorado ---------- */
-  .gt{background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  .gt{background:var(--gold-loop);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
       filter:drop-shadow(0 1px 0 rgba(60,35,0,.9)) drop-shadow(0 3px 6px rgba(0,0,0,.55));
       animation:shine 6s linear infinite}
-  @keyframes shine{from{background-position:0% 0}to{background-position:250% 0}}
+  @keyframes shine{from{background-position:0% 0}to{background-position:166.667% 0}}
   @keyframes barShine{from{background-position:0% 0}to{background-position:-200% 0}}
 
   .brand{display:flex;flex-direction:column;align-items:center;margin:2px 0 10px}
@@ -152,7 +155,7 @@
   .start-main{flex:1;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
   .start .coll.mini{margin-top:16px;padding-bottom:4px}
   .tip{position:absolute;z-index:6;max-width:250px;padding:10px 16px;border-radius:12px;text-align:center;pointer-events:none;
-       background:var(--gold);background-size:200% 200%;color:#2b1a02;border:1.5px solid #5a3d08;
+       background:var(--gold-loop);background-size:200% 200%;color:#2b1a02;border:1.5px solid #5a3d08;
        box-shadow:inset 0 0 0 1px rgba(255,244,200,.35), inset 0 2px 7px rgba(70,40,0,.45);
        opacity:0;transform-origin:var(--ax,50%) calc(100% + 10px);transform:scale(.2) translateY(16px)}
   .tip.show{animation:tipIn .55s cubic-bezier(.3,1.5,.5,1) forwards, tipShine 3s linear .55s infinite}
@@ -254,7 +257,7 @@
   .progress span{display:block;height:100%;background:linear-gradient(90deg,#8a6119 0%,#c09640 20%,#efdcaa 40%,#f7ecd0 50%,#efdcaa 60%,#c09640 80%,#8a6119 100%);background-size:200% 100%;background-repeat:repeat-x;animation:barShine 7s linear infinite;
                  border-radius:0 999px 999px 0;transition:width .45s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 12px rgba(255,220,120,.6)}
   .foot a.me{font-family:Cinzel,serif;font-weight:800;font-style:normal;font-size:17px;letter-spacing:.03em;text-decoration:none;
-       background:var(--gold);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;
+       background:var(--gold-loop);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;
        border-bottom:1px solid rgba(214,172,72,.45);padding-bottom:1px}
   .foot .by{font-style:normal}
   .foot{font-size:15px;color:var(--muted);text-align:center;margin-top:12px;font-style:italic}
