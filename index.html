@@ -435,6 +435,7 @@ function foot(){
     : t().foot;
 }
 function render(){
+  lies = hist.filter(x=>x==='liar').length + (cur==='liar'?1:0);
   foot();
   if(cur==='start') return start();
   const n=F[cur];
@@ -478,12 +479,12 @@ function pick(i,e){
   const node=cur, o=F[cur].o[i];
   setTimeout(()=>{ picks.push([node,i]); goTo(o[3]); },700);
 }
-function goTo(to){ if(to==='liar') lies++; go('next',()=>{ hist.push(cur); cur=to; }); }
+function goTo(to){ go('next',()=>{ hist.push(cur); cur=to; }); }
 function back(){
   go('back',()=>{
     cur=hist.pop();
     if(F[cur] && !F[cur].msg) picks.pop();
-    while(F[cur] && F[cur].msg && hist.length){ if(cur==='liar') lies=Math.max(0,lies-1); cur=hist.pop(); picks.pop(); }
+    while(F[cur] && F[cur].msg && hist.length){ cur=hist.pop(); picks.pop(); }
   });
 }
 const medal=(inner)=>`<svg class="medal" viewBox="0 0 120 120" aria-hidden="true">
