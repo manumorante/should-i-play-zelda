@@ -76,7 +76,7 @@
   .corner.bl{bottom:15px;left:7px;transform:scaleY(-1)}.corner.br{bottom:15px;right:7px;transform:scale(-1)}
 
   .body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;margin:0 -4px;padding:0 4px 2px;position:relative;z-index:2}
-  .qn{font-family:Cinzel,serif;font-size:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-bottom:6px;color:var(--gold-solid)}
+  .qn{font-family:Nunito,sans-serif;font-size:18px;font-weight:700;font-style:italic;line-height:1.3;text-align:center;margin:0 6px 8px;color:var(--gold-solid)}
   h1{font-family:Cinzel,serif;font-size:29px;font-weight:700;line-height:1.2;margin-bottom:20px;text-align:center;color:var(--ink);
      text-shadow:0 2px 8px rgba(0,0,0,.6)}
 
@@ -332,18 +332,18 @@ const F={
 const TXT={
  es:{
   title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino', meta:'⏱ 1 minuto · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
-  q:'Pregunta', back:'Atrás', again:'Otra vez', yes:'Sí', no:'No',
-  time:{q:'¿Tienes tiempo?', o:['Sí','No','No para Zelda']},
-  job:{q:'¿Tienes trabajo?'}, quit:{q:'¿Puedes dejarlo?'}, hobbies:{q:'¿Tienes aficiones?'}, free:{q:'¿Tienes tiempo libre?'},
-  hasgame:{q:'¿Tienes el juego?'}, beaten:{q:'¿Ya te lo has pasado?'}, money:{q:'¿Tienes dinero?'}, study:{q:'¿Estudias?'},
-  family:{q:'¿Con quién vives?', o:['Con mi pareja','Con mis hijos','Con amigos','Con mis padres','Con mi mascota','Vivo solo']},
-  roomies:{q:'¿Compartís la tele?'}, parents:{q:'¿Te dejan jugar?'}, pet:{q:'¿Perro o gato?', o:['Perro','Gato']},
+  back:'Atrás', again:'Otra vez', yes:'Sí', no:'No',
+  time:{q:'¿Tienes tiempo?',sub:'Piénsalo bien. Hyrule está escuchando.', o:['Sí','No','No para Zelda']},
+  job:{q:'¿Tienes trabajo?',sub:'Ganon también tiene jefe, y mira cómo acabó.'}, quit:{q:'¿Puedes dejarlo?',sub:'Link no tiene contrato y le va de maravilla.'}, hobbies:{q:'¿Tienes aficiones?',sub:'Cuidado: Zelda es muy celoso.'}, free:{q:'¿Tienes tiempo libre?',sub:'Cuidado, que esto se comprueba.'},
+  hasgame:{q:'¿Tienes el juego?',sub:'Los vídeos de YouTube no cuentan.'}, beaten:{q:'¿Ya te lo has pasado?',sub:'Sé sincero: ¿con las 900 semillas kolog?'}, money:{q:'¿Tienes dinero?',sub:'Las rupias del juego no cuentan.'}, study:{q:'¿Estudias?',sub:'Las mazmorras también son exámenes.'},
+  family:{q:'¿Con quién vives?',sub:'Esto decide cuánto vas a tener que esconderte.', o:['Con mi pareja','Con mis hijos','Con amigos','Con mis padres','Con mi mascota','Vivo solo']},
+  roomies:{q:'¿Compartís la tele?',sub:'Aquí empiezan las guerras de verdad.'}, parents:{q:'¿Te dejan jugar?',sub:'Da igual tu edad. Responde.'}, pet:{q:'¿Perro o gato?',sub:'Uno te espera. El otro te juzga.', o:['Perro','Gato']},
   schedule:{big:'Pon un horario en la nevera', p:'Tus turnos, de 8 horas.', btn:'Justo y necesario'},
   hermit:{big:'Cierra la puerta', p:'Si preguntan, estás estudiando.', btn:'Entendido'},
   allowed:{big:'Aprovecha', p:'Antes de que cambien de opinión.', btn:'Rápido'},
   secret:{big:'Juega cuando se duerman', p:'Como en los viejos tiempos.', btn:'Clásico'},
   dog:{big:'Primero paseo, luego Hyrule', p:'Él también necesita su siesta.', btn:'Vamos'},
-  cat:{big:'Se tumbará encima del mando', p:'Acéptalo y juega con él encima.', btn:'Lo acepto'}, partner:{q:'¿Le gusta Zelda?'}, kids:{q:'¿Ya juegan a videojuegos?'},
+  cat:{big:'Se tumbará encima del mando', p:'Acéptalo y juega con él encima.', btn:'Lo acepto'}, partner:{q:'¿Le gusta Zelda?',sub:'Si dice que no, quizá tengáis que hablar.'}, kids:{q:'¿Ya juegan a videojuegos?',sub:'La Trifuerza se hereda.'},
   secondrun:{big:'Otra vuelta', p:'Esta vez, sin mirar la guía.', btn:'Acepto'},
   pots:{big:'¡Rompe vasijas!', p:'Siempre sale algo.', btn:'Voy a por ellas'},
   buyit:{big:'Ve a comprarlo', p:'¿Y qué haces aquí todavía?', btn:'Ya voy'},
@@ -370,18 +370,18 @@ const TXT={
  },
  en:{
   title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide', meta:'⏱ 1 minute · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
-  q:'Question', back:'Back', again:'Again', yes:'Yes', no:'No',
-  time:{q:'Do you have time?', o:['Yes','No','Not for Zelda']},
-  job:{q:'Do you have a job?'}, quit:{q:'Can you quit it?'}, hobbies:{q:'Do you have hobbies?'}, free:{q:'Do you have free time?'},
-  hasgame:{q:'Do you own the game?'}, beaten:{q:'Have you already beaten it?'}, money:{q:'Do you have money?'}, study:{q:'Are you a student?'},
-  family:{q:'Who do you live with?', o:['My partner','My kids','Friends','My parents','My pet','I live alone']},
-  roomies:{q:'Do you share the TV?'}, parents:{q:'Do they let you play?'}, pet:{q:'Dog or cat?', o:['Dog','Cat']},
+  back:'Back', again:'Again', yes:'Yes', no:'No',
+  time:{q:'Do you have time?',sub:'Think carefully. Hyrule is listening.', o:['Yes','No','Not for Zelda']},
+  job:{q:'Do you have a job?',sub:'Ganon had a boss too. Look how that ended.'}, quit:{q:'Can you quit it?',sub:'Link has no contract and he\'s doing great.'}, hobbies:{q:'Do you have hobbies?',sub:'Careful: Zelda gets jealous.'}, free:{q:'Do you have free time?',sub:'Careful. This will be checked.'},
+  hasgame:{q:'Do you own the game?',sub:'YouTube playthroughs don\'t count.'}, beaten:{q:'Have you already beaten it?',sub:'Be honest: all 900 Korok seeds?'}, money:{q:'Do you have money?',sub:'In-game rupees don\'t count.'}, study:{q:'Are you a student?',sub:'Dungeons are exams too.'},
+  family:{q:'Who do you live with?',sub:'This decides how much hiding you\'ll need.', o:['My partner','My kids','Friends','My parents','My pet','I live alone']},
+  roomies:{q:'Do you share the TV?',sub:'This is where the real wars begin.'}, parents:{q:'Do they let you play?',sub:'Your age doesn\'t matter. Answer.'}, pet:{q:'Dog or cat?',sub:'One waits for you. The other judges you.', o:['Dog','Cat']},
   schedule:{big:'Put a schedule on the fridge', p:'Your shifts: 8 hours each.', btn:'Only fair'},
   hermit:{big:'Close the door', p:'If they ask, you\'re studying.', btn:'Got it'},
   allowed:{big:'Make the most of it', p:'Before they change their minds.', btn:'Quick'},
   secret:{big:'Play once they\'re asleep', p:'Just like the old days.', btn:'Classic'},
   dog:{big:'Walk first, then Hyrule', p:'They need a nap too.', btn:'Let\'s go'},
-  cat:{big:'It will lie on the controller', p:'Accept it and play around it.', btn:'I accept'}, partner:{q:'Do they like Zelda?'}, kids:{q:'Do they play video games yet?'},
+  cat:{big:'It will lie on the controller', p:'Accept it and play around it.', btn:'I accept'}, partner:{q:'Do they like Zelda?',sub:'If not, maybe you two need to talk.'}, kids:{q:'Do they play video games yet?',sub:'The Triforce runs in the family.'},
   secondrun:{big:'One more run', p:'This time, no walkthrough.', btn:'Deal'},
   pots:{big:'Smash pots!', p:'Something always drops.', btn:'On it'},
   buyit:{big:'Go buy it', p:'What are you still doing here?', btn:'On my way'},
@@ -407,7 +407,6 @@ const TXT={
   ach:{secondrun:'Second Run', pots:'Pot Smasher', buyer:'Model Customer', study:'Applied Studies', soulmate:'Soulmate', romlie:'Romantic Lie', coop:'Classic Education', culture:'General Knowledge', roomtv:'Model Roommate', hermit:'Hermit Mode', allowed:'Permission Granted', secret:'Secret Session', dog:'Adventure Buddy', cat:'Feline Servant', noexcuses:'No Excuses', blasphemy:'Blasphemy Forgiven', quit:'Resignation Letter', hobby:'New Obsession', honest:'Brutal Honesty', white:'White Lie', pinocchio:'Pinocchio of Hyrule'}
  }
 };
-const ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
 let L='en', cur='start', hist=[], picks=[], dir='next', lies=0, prevPct=0, cfx=0;
 const card=document.getElementById('card');
 const t=()=>TXT[L];
@@ -451,8 +450,7 @@ function render(){
     if(n.bad && again){card.classList.remove('beat');void card.offsetWidth;card.classList.add('beat');setTimeout(()=>card.classList.remove('beat'),1400)}
     return after();
   }
-  const num=ROMAN[picks.length]||picks.length+1;
-  card.innerHTML=`<div class="body"><div class="qn">${t().q} ${num}</div><h1>${t()[cur].q}</h1><div class="opts" id="opts">`+
+    card.innerHTML=`<div class="body"><div class="qn">${t()[cur].sub}</div><h1>${t()[cur].q}</h1><div class="opts" id="opts">`+
     n.o.map((o,i)=>`<button class="opt" style="animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span>${optLabel(cur,i)}</span></button>`).join('')+
     `</div></div><div class="actions">${backBtn()}</div>`+progress();
   after();
