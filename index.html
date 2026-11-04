@@ -76,8 +76,8 @@
   .corner.bl{bottom:15px;left:7px;transform:scaleY(-1)}.corner.br{bottom:15px;right:7px;transform:scale(-1)}
 
   .body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;margin:0 -4px;padding:0 4px 2px;position:relative;z-index:2}
-  .qn{font-family:Nunito,sans-serif;font-size:18px;font-weight:700;font-style:italic;line-height:1.3;text-align:center;margin:0 6px 8px;color:var(--gold-solid)}
-  h1{font-family:Cinzel,serif;font-size:29px;font-weight:700;line-height:1.2;margin-bottom:20px;text-align:center;color:var(--ink);
+  .qn{font-family:Nunito,sans-serif;font-size:18px;font-weight:700;font-style:italic;line-height:1.3;text-align:center;margin:0 6px 20px;color:var(--gold-solid)}
+  h1{font-family:Cinzel,serif;font-size:29px;font-weight:700;line-height:1.2;margin:18px 0 8px;text-align:center;color:var(--ink);
      text-shadow:0 2px 8px rgba(0,0,0,.6)}
 
   /* ---------- opciones ---------- */
@@ -450,7 +450,7 @@ function render(){
     if(n.bad && again){card.classList.remove('beat');void card.offsetWidth;card.classList.add('beat');setTimeout(()=>card.classList.remove('beat'),1400)}
     return after();
   }
-    card.innerHTML=`<div class="body"><div class="qn">${t()[cur].sub}</div><h1>${t()[cur].q}</h1><div class="opts" id="opts">`+
+    card.innerHTML=`<div class="body"><h1>${t()[cur].q}</h1><div class="qn">${t()[cur].sub}</div><div class="opts" id="opts">`+
     n.o.map((o,i)=>`<button class="opt" style="animation-delay:${80+i*60}ms" onclick="pick(${i},event)"><span>${optLabel(cur,i)}</span></button>`).join('')+
     `</div></div><div class="actions">${backBtn()}</div>`+progress();
   after();
