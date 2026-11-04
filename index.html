@@ -185,7 +185,7 @@
 
   /* ---------- final: logro y sendero ---------- */
   .win .medal{width:88px;height:88px}
-  .win{gap:10px}
+  .win{gap:16px}
   .win .big{font-size:31px}
   .ach{display:flex;flex-direction:column;align-items:center;gap:2px}
   .ach span{font-size:16px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
@@ -281,6 +281,8 @@
   .ad.on{background:none;border:none;box-shadow:0 2px 6px -2px #000;overflow:hidden}
   .ad.on .seal{width:100%;height:100%}
   .ad.cur{box-shadow:0 0 0 2px #efdcaa,0 0 16px rgba(255,220,120,.7)}
+  .dots{display:grid;grid-template-columns:repeat(7,40px);gap:7px;justify-content:center}
+  .ad,.coll.mini .ad{width:40px;height:40px;font-size:18px}
 </style>
 </head>
 <body>
@@ -344,7 +346,7 @@ const F={
 };
 const TXT={
  es:{
-  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Responde con sinceridad. Da igual: el resultado ya está decidido.', startBtn:'Que decida el destino', meta:'⏱ 1 minuto · 1 resultado posible', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
+  title:'¿Deberías jugar a Zelda?', by:'Creado por', kick:'Test 100% científico', lead:'Avalado por nadie. Respetado por todos.', startBtn:'Que decida el destino', doc:'¿Debería jugar a Zelda? El test', foot:'Rigor científico: dudoso. Resultado: inevitable.',
   back:'Atrás', again:'Otra vez', yes:'Sí', no:'No',
   time:{q:'¿Tienes tiempo?',sub:'Piénsalo bien. Hyrule está escuchando.', o:['Sí','No','No para Zelda']},
   job:{q:'¿Tienes trabajo?',sub:'Ganon también tiene jefe, y mira cómo acabó.'}, quit:{q:'¿Puedes dejarlo?',sub:'Link no tiene contrato y le va de maravilla.'}, hobbies:{q:'¿Tienes aficiones?',sub:'Cuidado: Zelda es muy celoso.'}, free:{q:'¿Tienes tiempo libre?',sub:'Cuidado, que esto se comprueba.'},
@@ -382,7 +384,7 @@ const TXT={
   ach:{secondrun:'Segunda vuelta', pots:'Rompevasijas', buyer:'Cliente ejemplar', study:'Estudio aplicado', soulmate:'Alma gemela', romlie:'Mentira romántica', coop:'Educación clásica', culture:'Cultura general', roomtv:'Convivencia ejemplar', hermit:'Modo ermitaño', allowed:'Permiso concedido', secret:'Partida clandestina', dog:'Compañero de aventuras', cat:'Siervo felino', noexcuses:'Sin excusas', blasphemy:'Blasfemia perdonada', quit:'Carta de dimisión', hobby:'Nueva obsesión', honest:'Honestidad brutal', white:'Mentira piadosa', pinocchio:'Pinocho de Hyrule'}
  },
  en:{
-  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Answer honestly. It doesn\'t matter: the result is already decided.', startBtn:'Let fate decide', meta:'⏱ 1 minute · 1 possible result', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
+  title:'Should you play Zelda?', by:'Created by', kick:'100% scientific test', lead:'Endorsed by no one. Respected by everyone.', startBtn:'Let fate decide', doc:'Should I play Zelda? The test', foot:'Scientific rigor: questionable. Result: inevitable.',
   back:'Back', again:'Again', yes:'Yes', no:'No',
   time:{q:'Do you have time?',sub:'Think carefully. Hyrule is listening.', o:['Yes','No','Not for Zelda']},
   job:{q:'Do you have a job?',sub:'Ganon had a boss too. Look how that ended.'}, quit:{q:'Can you quit it?',sub:'Link has no contract and he\'s doing great.'}, hobbies:{q:'Do you have hobbies?',sub:'Careful: Zelda gets jealous.'}, free:{q:'Do you have free time?',sub:'Careful. This will be checked.'},
@@ -630,16 +632,12 @@ function end(){
   const coll=`<div class="coll ${R}" style="animation-delay:.85s"><div class="coll-h">${t().found} <b>${found.length}/${ACH_ORDER.length}</b></div>
     <div class="dots">${dots(found,key,isNew,true)}</div>
     <div class="ad-info" id="adinfo">${all?t().allFound:isNew?t().newAch:t().tapHint}</div></div>`;
-  const steps=ev.map((e,k)=>{const s=stepParts(e);
-    return `<li class="${R}" style="animation-delay:${1+k*.08}s"><span class="dot">${s.ic}</span>${s.m?`<b class="m ${s.bad?'bad':''}">${s.m}</b>`:`<span class="tx">${s.q} <b>${s.a}</b></span>`}</li>`}).join('');
   card.innerHTML=`<div class="body"><div class="msg win">
     <div class="medal-wrap"><div class="rays-clip"><div class="rays"></div></div>${sealSVG(key,false,'medal')}</div>
     <div class="ach ${R}" style="animation-delay:.4s"><span>${t().achLabel}</span><b class="gt">${ach}</b></div>
     <div class="qn ${R}" style="animation-delay:.6s;margin:6px 0 0">${t().verdict}</div>
     <div class="big gt ${R}" style="animation-delay:.75s">${t().play}</div>
     ${coll}
-    <div class="trail-box ${R}" style="animation-delay:.9s"><div class="trail-h">${t().road}</div>
-      <ol class="trail">${steps}<li class="${R} fin" style="animation-delay:${1+ev.length*.08}s"><span class="dot">★</span><b>Zelda</b></li></ol></div>
     </div></div>
     <div class="actions"><button class="btn back" onclick="reset()">${t().again}</button><button class="btn go pop" onclick="share()">${t().share}</button></div>`+progress();
   after();
